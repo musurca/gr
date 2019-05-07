@@ -19,18 +19,21 @@ GR_MISSION_CHANCE = 100;
 [] call compile preprocessFile "gr\init.sqf";
 
 
-// OPTIONAL: register custom event functions, e.g.
+// OPTIONAL: add/remove custom event handlers, e.g.
 
 // On civilian murder by player:
 [yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed, _nextofkin]
+[yourCustomEvent_OnCivDeath] call GR_fnc_removeCivDeathEventHandler;
 
 // On body delivery:
 [yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin, _body]
+[yourCustomEvent_OnDeliverBody] call GR_fnc_removeDeliverBodyEventHandler;
 
 // On concealment of a death:
 [yourCustomEvent_OnConcealDeath] call GR_fnc_addConcealDeathEventHandler; // args [_killer, _nextofkin, _grave]
+[yourCustomEvent_OnConcealDeath] call GR_fnc_removeConcealDeathEventHandler;
 
-// NOTE: if your event uses _nextofkin or _body, make sure to turn off garbage collection with:
+// NOTE: if your event handler uses _nextofkin or _body, make sure to turn off garbage collection with:
 // _nextofkin setVariable ["GR_WILLDELETE",false];
 // _body setVariable ["GR_WILLDELETE",false];
 
@@ -58,12 +61,24 @@ GR_fnc_addCivDeathEventHandler = {
 	GR_EH_CIVDEATH pushBack (_this select 0);
 };
 
+GR_fnc_removeCivDeathEventHandler = {
+	GR_EH_CIVDEATH = GR_EH_CIVDEATH - [_this select 0];
+};
+
 GR_fnc_addDeliverBodyEventHandler = {
 	GR_EH_DELIVERBODY pushBack (_this select 0);
 };
 
+GR_fnc_removeDeliverBodyEventHandler = {
+	GR_EH_DELIVERBODY = GR_EH_DELIVERBODY - [_this select 0];
+};
+
 GR_fnc_addConcealDeathEventHandler = {
 	GR_EH_CONCEALDEATH pushBack (_this select 0);
+};
+
+GR_fnc_removeConcealDeathEventHandler = {
+	GR_EH_CONCEALDEATH = GR_EH_CONCEALDEATH - [_this select 0];
 };
 
 GR_fnc_MPhint = { hintSilent parseText _this; };
@@ -437,7 +452,7 @@ if (isServer) then {
 	["ace_placedInBodyBag", {
 		params["_target","_bodybag"];
 		_bodybag setVariable ["CORPSE_ID",netId _target];
-		_bodybag setVariable ["AGE",_target getVariable ["AGE",0],true];
+		_bodybag setVariable ["AGE",_target getVariable ["AGE",0],true]; // only broadcast AGE to clients when in the bodybag
 		_bodybag setVariable ["GR_NEXTOFKIN",_target getVariable ["GR_NEXTOFKIN",objNull]];
 		_bodybag setVariable ["GR_HIDEBODY_TASK",_target getVariable ["GR_HIDEBODY_TASK",""]];
 	}] call CBA_fnc_addEventHandler;
@@ -454,8 +469,8 @@ if (isServer) then {
 		};
 
 		if ((side group _killed) == civilian) then {
-			_vicAge = round random [12,40,79];
-			_killed setVariable ["AGE",_vicAge,true];
+			_vicAge = round random [15,40,79];
+			_killed setVariable ["AGE",_vicAge];
 
 			_text = format ["<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>", name _killer, name _killed, _vicAge];
 			_text remoteExec ["GR_fnc_MPhint", side _killer];
@@ -471,6 +486,10 @@ if (isServer) then {
  					} forEach GR_EH_CIVDEATH;
 				};
 			};
+		} else { // not a civilian
+			// Generate an age for soldiers (18-50)
+			_vicAge = round random [18,30,50];
+			_killed setVariable ["AGE",_vicAge];
 		};
 	}] call CBA_fnc_addClassEventHandler;
 	
