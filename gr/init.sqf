@@ -1,9 +1,25 @@
-TABLE_TASK_OWNERS = [] call CBA_fnc_hashCreate;
-TABLE_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
+GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
+GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 
-new_fnc_MPhint = { hintSilent parseText _this; };
+GR_EH_CIVDEATH = [];
+GR_EH_DELIVERBODY = [];
+GR_EH_CONCEALDEATH = [];
 
-MP_burybody = {
+GR_fnc_addCivDeathEventHandler = {
+	GR_EH_CIVDEATH pushBack (_this select 0);
+};
+
+GR_fnc_addDeliverBodyEventHandler = {
+	GR_EH_DELIVERBODY pushBack (_this select 0);
+};
+
+GR_fnc_addConcealDeathEventHandler = {
+	GR_EH_CONCEALDEATH pushBack (_this select 0);
+};
+
+GR_fnc_MPhint = { hintSilent parseText _this; };
+
+GR_fnc_burybody = {
 	if(!isServer) exitWith {};
 	
 	params ["_target","_player"];
@@ -15,8 +31,8 @@ MP_burybody = {
 	_posTarget = position _target;
 	_cId = _target getVariable ["CORPSE_ID",0];	
 	_vicAge = _target getVariable ["AGE",0];
-	_task = _target getVariable ["MP_HIDEBODY_TASK",""];
-	_nextOfKin = _target getVariable ["MP_NEXTOFKIN",objNull];
+	_task = _target getVariable ["GR_HIDEBODY_TASK",""];
+	_nextOfKin = _target getVariable ["GR_NEXTOFKIN",objNull];
 	if (_vicAge == 0) then {
 		_vicAge = round random [18, 28, 47];
 	};
@@ -35,12 +51,12 @@ MP_burybody = {
 	_grave setVariable ["DOGTAG_DATA", _dogtagData, true];
 	_grave setVariable ["AGE",_vicAge, true];
 	if (_task != "") then {
-		_grave setVariable ["MP_HIDEBODY_TASK",_task];
-		_grave setVariable ["MP_NEXTOFKIN",_nextOfKin];
+		_grave setVariable ["GR_HIDEBODY_TASK",_task];
+		_grave setVariable ["GR_NEXTOFKIN",_nextOfKin];
 	};
 };
 
-MP_exhumebody = {
+GR_fnc_exhumebody = {
 	if(!isServer) exitWith {};
 	
 	params ["_target"];
@@ -54,8 +70,8 @@ MP_exhumebody = {
 	_cId = _target getVariable ["CORPSE_ID",0];
 	_dogtagData = _target getVariable "DOGTAG_DATA";
 	_vicAge = _target getVariable "AGE";
-	_task = _target getVariable ["MP_HIDEBODY_TASK",""];
-	_nextOfKin = _target getVariable ["MP_NEXTOFKIN",objNull];
+	_task = _target getVariable ["GR_HIDEBODY_TASK",""];
+	_nextOfKin = _target getVariable ["GR_NEXTOFKIN",objNull];
 	deleteVehicle _target;
 
 	_body = "ACE_bodyBagObject" createVehicle [0,0,0];
@@ -65,12 +81,12 @@ MP_exhumebody = {
 	_body setVariable ["DOGTAG_DATA", _dogtagData,true];
 	_body setVariable ["AGE", _vicAge,true];
 	if (_task != "") then {
-		_body setVariable ["MP_HIDEBODY_TASK",_task];
-		_body setVariable ["MP_NEXTOFKIN",_nextOfKin];
+		_body setVariable ["GR_HIDEBODY_TASK",_task];
+		_body setVariable ["GR_NEXTOFKIN",_nextOfKin];
 	};
 };
 
-MP_vandalizegrave = {
+GR_fnc_vandalizegrave = {
 	if(!isServer) exitWith {};
 	
 	params ["_target"];
@@ -78,29 +94,33 @@ MP_vandalizegrave = {
 	_target setVariable ["IS_LEGIBLE",false,true];
 	_target setVariable ["DOGTAG_DATA",["Unknown","",""],true];
 
-	_task = _target getVariable ["MP_HIDEBODY_TASK",""];
+	_task = _target getVariable ["GR_HIDEBODY_TASK",""];
 	if (_task != "") then {
 		_taskState = [_task] call BIS_fnc_taskState;
 		if ((_taskState != "") && (_taskState != "Succeeded") && (_taskState != "Failed")) then {
 			// First check if we've buried the body far enough away
 			_locs = nearestLocations [position _target, ["NameCity","NameCityCapital","NameVillage"], 300];
 			if ((count _locs) == 0) then {
-				_taskInfo = [TABLE_TASK_OWNERS, _task] call CBA_fnc_hashGet;
+				_taskInfo = [GR_TASK_OWNERS, _task] call CBA_fnc_hashGet;
 				_taskOwner = _taskInfo select 0;
 				_taskSide = _taskInfo select 1;
 
-				_kin = _target getVariable "MP_NEXTOFKIN";
+				_kin = _target getVariable "GR_NEXTOFKIN";
 				[_task,"Succeeded",false] call BIS_fnc_taskSetState;
 				["TaskSucceeded",["","Conceal Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
 				// TODO: insert reward code here
 				// e.g. [_taskSide,10] call MP_addForcePool;
-				[] call AOT_concealCivDeath;
+				//[] call AOT_concealCivDeath;
+				
+				{
+ 					[_taskOwner] call _x;
+ 				} forEach GR_EH_CONCEALDEATH;
 
 				// Clean up
 				deleteVehicle _kin;
-				[TABLE_TASK_OWNERS, _task] call CBA_fnc_hashRem;
-				_target setVariable ["MP_HIDEBODY_TASK",""];
-				_target setVariable ["MP_NEXTOFKIN",objNull];
+				[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
+				_target setVariable ["GR_HIDEBODY_TASK",""];
+				_target setVariable ["GR_NEXTOFKIN",objNull];
 				
 				[_task] spawn {
 					sleep 180;
@@ -111,7 +131,7 @@ MP_vandalizegrave = {
 	};
 };
 
-_ace_burialAction = ["actionBury","Bury","",{
+GR_ace_burialAction = ["actionBury","Bury","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
 	[
 		8,
@@ -119,7 +139,7 @@ _ace_burialAction = ["actionBury","Bury","",{
 		{ // success
 			params["_target"];
 			player switchMove "";
-			[_target,player] remoteExecCall ["MP_burybody",2];
+			[_target,player] remoteExecCall ["GR_fnc_burybody",2];
 		},
 		{ // interruption
 			player switchMove "";
@@ -127,9 +147,9 @@ _ace_burialAction = ["actionBury","Bury","",{
 		"Burying body..."
 	] call ace_common_fnc_progressBar;
 }, {"ACE_EntrenchingTool" in (items _player)}] call ace_interact_menu_fnc_createAction;
-["ACE_bodyBagObject",0,["ACE_MainActions"],_ace_burialAction] call ace_interact_menu_fnc_addActionToClass;
+["ACE_bodyBagObject",0,["ACE_MainActions"],GR_ace_burialAction] call ace_interact_menu_fnc_addActionToClass;
 
-_ace_vandalizeAction = ["actionVandalize","Vandalize marker","",{
+GR_ace_vandalizeAction = ["actionVandalize","Vandalize marker","",{
 	if(_target getVariable ["IS_LEGIBLE",true]) then {
 		player playMove "acts_miller_knockout";
 		[
@@ -137,7 +157,7 @@ _ace_vandalizeAction = ["actionVandalize","Vandalize marker","",{
 			_target,
 			{ // success
 				params["_target"];
-				[_target,player] remoteExecCall ["MP_vandalizegrave",2];
+				[_target,player] remoteExecCall ["GR_fnc_vandalizegrave",2];
 				player switchMove "";
 				hint "You scratch out the name on the marker.";
 			},
@@ -150,16 +170,16 @@ _ace_vandalizeAction = ["actionVandalize","Vandalize marker","",{
 		hintSilent "The marker is already illegible.";
 	};
 }, {true}] call ace_interact_menu_fnc_createAction;
-["Land_Grave_dirt_F",0,["ACE_MainActions"],_ace_vandalizeAction] call ace_interact_menu_fnc_addActionToClass;
+["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_vandalizeAction] call ace_interact_menu_fnc_addActionToClass;
 
-_ace_exhumeAction = ["actionExhume","Exhume","",{
+GR_ace_exhumeAction = ["actionExhume","Exhume","",{
 	player playMove "acts_miller_knockout";
 	[
 		6,
 		_target,
 		{
 			params["_target"];
-			[_target,player] remoteExecCall ["MP_exhumebody",2];
+			[_target,player] remoteExecCall ["GR_fnc_exhumebody",2];
 			player switchMove "";
 		},
 		{ 
@@ -168,9 +188,9 @@ _ace_exhumeAction = ["actionExhume","Exhume","",{
 		"Exhuming body..."
 	] call ace_common_fnc_progressBar;
 }, {"ACE_EntrenchingTool" in (items _player)}] call ace_interact_menu_fnc_createAction;
-["Land_Grave_dirt_F",0,["ACE_MainActions"],_ace_exhumeAction] call ace_interact_menu_fnc_addActionToClass;
+["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_exhumeAction] call ace_interact_menu_fnc_addActionToClass;
 
-_ace_readEpitaphAction = ["actionEpitaph","Read marker","",{
+GR_ace_readEpitaphAction = ["actionEpitaph","Read marker","",{
 	params ["_target", "_player"];
 	if(_target getVariable ["IS_LEGIBLE",true]) then {
 		_name = (_target getVariable ["DOGTAG_DATA", ["Unknown","",""]]) select 0;
@@ -186,9 +206,9 @@ _ace_readEpitaphAction = ["actionEpitaph","Read marker","",{
 		hintSilent "Someone has scratched out the name on this grave."; 
 	}; 
 }, {true}] call ace_interact_menu_fnc_createAction;
-["Land_Grave_dirt_F",0,["ACE_MainActions"],_ace_readEpitaphAction] call ace_interact_menu_fnc_addActionToClass;
+["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_readEpitaphAction] call ace_interact_menu_fnc_addActionToClass;
 
-MP_makeMissionDeliverBody = {
+GR_fnc_makeMissionDeliverBody = {
 	params["_killer", "_killed", "_deathPos", "_killedName"];
 	
 	_corpseId = netId _killed;
@@ -197,7 +217,7 @@ MP_makeMissionDeliverBody = {
 	};
 
 	// Spawn the next-of-kin somewhere within 20km
-	_locs = nearestLocations [_deathPos, ["NameCity","NameCityCapital","NameVillage"], 20000];
+	_locs = nearestLocations [_deathPos, ["NameCity","NameCityCapital","NameVillage"], 4000];
 	_bposlist = [];
 	while {count _bposlist == 0} do {
 		_startLocPos = _deathPos;
@@ -227,20 +247,20 @@ MP_makeMissionDeliverBody = {
 	_bigTask = format ["CivDead%1",netId _nextOfKin];
 	[side _killer,_bigTask,[format ["Deliver the body of %1 to his nearest relative.",_killedName],"Deal with Civilian Death","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
 
-	_nextOfKin setVariable ["MP_DELIVERBODY_TASK",_bigTask];
-	_nextOfKin setVariable ["MP_CORPSE_ID",_corpseId];
-	_killed setVariable ["MP_HIDEBODY_TASK",_bigTask];
-	_killed setVariable ["MP_NEXTOFKIN",_nextOfKin];
-	[TABLE_TASK_OWNERS, _bigTask, [owner _killer,side _killer]] call CBA_fnc_hashSet;
+	_nextOfKin setVariable ["GR_DELIVERBODY_TASK",_bigTask];
+	_nextOfKin setVariable ["GR_CORPSE_ID",_corpseId];
+	_killed setVariable ["GR_HIDEBODY_TASK",_bigTask];
+	_killed setVariable ["GR_NEXTOFKIN",_nextOfKin];
+	[GR_TASK_OWNERS, _bigTask, [owner _killer,side _killer]] call CBA_fnc_hashSet;
 
 	_eh = _nextOfKin addEventHandler ["Killed", {
 		_kin = _this select 0;
-		_task = _kin getVariable ["MP_DELIVERBODY_TASK",""];
-		_taskOwner = ([TABLE_TASK_OWNERS,_task] call CBA_fnc_hashGet) select 0;
+		_task = _kin getVariable ["GR_DELIVERBODY_TASK",""];
+		_taskOwner = ([GR_TASK_OWNERS,_task] call CBA_fnc_hashGet) select 0;
 
 		[_task,"Failed",false] call BIS_fnc_taskSetState;
 		["TaskFailed",["","Deal with Civilian Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-		[TABLE_TASK_OWNERS,_task] call CBA_fnc_hashRem;		
+		[GR_TASK_OWNERS,_task] call CBA_fnc_hashRem;		
 
 		// Clean up
 		[_task] spawn {
@@ -251,19 +271,19 @@ MP_makeMissionDeliverBody = {
 	
 	// Add this NPC to the player's list of responsiblities
 	_playerName = name _killer;
-	_deathArray = [TABLE_PLAYER_TASKS,_playerName] call CBA_fnc_hashGet;
+	_deathArray = [GR_PLAYER_TASKS,_playerName] call CBA_fnc_hashGet;
 	if(count _deathArray == 0) then {
 		_deathArray = [];
 	};
 	_deathArray pushBack _nextOfKin;
-	[TABLE_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
+	[GR_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
 
 	// Handle body delivery or death of next of kin
 	[_nextOfKin, _eh] spawn {
 		params["_kin","_handle"];
 
-		_task = _kin getVariable ["MP_DELIVERBODY_TASK",""];
-		_taskInfo = [TABLE_TASK_OWNERS,_task] call CBA_fnc_hashGet;
+		_task = _kin getVariable ["GR_DELIVERBODY_TASK",""];
+		_taskInfo = [GR_TASK_OWNERS,_task] call CBA_fnc_hashGet;
 		_taskOwner = _taskInfo select 0;
 		_taskSide = _taskInfo select 1;		
 
@@ -278,7 +298,7 @@ MP_makeMissionDeliverBody = {
 			if( ({_x distance _kin <= 20} count allPlayers) > 0 ) then {
 				_objs = _kin nearObjects ["ACE_bodyBagObject", 5];
 				if (count _objs > 0) then {
-					_cId = _kin getVariable ["MP_CORPSE_ID",0];
+					_cId = _kin getVariable ["GR_CORPSE_ID",0];
 					_body = objNull;
 					{ 
 						if ((_x getVariable ["CORPSE_ID",0]) == _cId) exitWith { _body = _x};
@@ -299,8 +319,13 @@ MP_makeMissionDeliverBody = {
 						["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
 						// TODO: insert reward code here
 						// e.g. [_taskSide, 50] call MP_addForcePool;
-						[TABLE_TASK_OWNERS, _task] call CBA_fnc_hashRem;
-						[] call AOT_deliverBody;
+						[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
+						
+						// Call custom body delivery code
+						{
+ 							[_taskOwner] call _x;
+ 						} forEach GR_EH_DELIVERBODY;
+						//[] call AOT_deliverBody;
 
 						// Remove failure upon death event
 						_kin removeEventHandler ["Killed", _handle];
@@ -318,11 +343,11 @@ MP_makeMissionDeliverBody = {
 		deleteVehicle _body;
 		[_task] call BIS_fnc_deleteTask;
 		
-		// remove from TABLE_PLAYER_TASKS
-		_deathArray = [TABLE_PLAYER_TASKS,_name] call CBA_fnc_hashGet;
+		// remove from GR_PLAYER_TASKS
+		_deathArray = [GR_PLAYER_TASKS,_name] call CBA_fnc_hashGet;
 		if (count _deathArray > 0) then {
 			_deathArray = _deathArray - [_kin];
-			[TABLE_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
+			[GR_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
 		};
 	};
 };
@@ -333,8 +358,8 @@ if (isServer) then {
 		params["_target","_bodybag"];
 		_bodybag setVariable ["CORPSE_ID",netId _target];
 		_bodybag setVariable ["AGE",_target getVariable ["AGE",0],true];
-		_bodybag setVariable ["MP_NEXTOFKIN",_target getVariable ["MP_NEXTOFKIN",objNull]];
-		_bodybag setVariable ["MP_HIDEBODY_TASK",_target getVariable ["MP_HIDEBODY_TASK",""]];
+		_bodybag setVariable ["GR_NEXTOFKIN",_target getVariable ["GR_NEXTOFKIN",objNull]];
+		_bodybag setVariable ["GR_HIDEBODY_TASK",_target getVariable ["GR_HIDEBODY_TASK",""]];
 	}] call CBA_fnc_addEventHandler;
 
 	["CAManBase", "killed",{ 
@@ -351,17 +376,21 @@ if (isServer) then {
 		if ((side group _killed) == civilian) then {
 			// TODO: insert penalization code here
 			// e.g. [side _killer, -25] call MP_addForcePool;
-			[] call AOT_penalizeCivDeath;
- 
+			//[] call AOT_penalizeCivDeath;
 			_vicAge = round random [12,40,79];
 			_killed setVariable ["AGE",_vicAge,true];
 
 			_text = format ["<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>", name _killer, name _killed, _vicAge];
-			_text remoteExec ["new_fnc_MPhint", side _killer];
+			_text remoteExec ["GR_fnc_MPhint", side _killer];
+
+			// Call custom civilian death penalization code
+			{
+ 				[_killer, _killed] call _x;
+ 			} forEach GR_EH_CIVDEATH;
 
 			// Players get an "apology" mission
 			if (isPlayer _killer) then {
-				[_killer, _killed, getPos _killed, name _killed] spawn MP_makeMissionDeliverBody;
+				[_killer, _killed, getPos _killed, name _killed] spawn GR_fnc_makeMissionDeliverBody;
 			};
 		};
 	}] call CBA_fnc_addClassEventHandler;
@@ -370,7 +399,7 @@ if (isServer) then {
 	addMissionEventHandler ["HandleDisconnect", {
 		params ["_unit", "_id", "_uid", "_name"];
 		
-		_deathArray = [TABLE_PLAYER_TASKS,_name] call CBA_fnc_hashGet;
+		_deathArray = [GR_PLAYER_TASKS,_name] call CBA_fnc_hashGet;
 		if(count _deathArray > 0) then {
 			[_deathArray,_name] spawn {
 				params["_deathArray","_name"];
@@ -380,7 +409,7 @@ if (isServer) then {
 						// additional cleanup occurs in next-of-kin triggers
 						deleteVehicle _x; 
 					} forEach _deathArray;
-					[TABLE_PLAYER_TASKS,_name,[]] call CBA_fnc_hashSet;
+					[GR_PLAYER_TASKS,_name,[]] call CBA_fnc_hashSet;
 				};
 			};
 		};
