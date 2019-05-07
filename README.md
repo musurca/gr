@@ -2,6 +2,8 @@
 Framework for handling civilian deaths, reparations, and war crimes in Arma 3 missions.
 Requirements: CBA_A3, ACE3
 
+v1.0
+
 Usage:
 in your mission's init.sqf, add the following lines:
 
@@ -13,10 +15,10 @@ GR_MAX_KIN_DIST = 10000;
 [] call compile preprocessFile "gr\init.sqf";
 
 
-// OPTIONAL: register custom event functions, e.g.
+/// OPTIONAL: register custom event functions, e.g.
 
-// On civilian murder:
-[yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed]
+// On civilian murder by player:
+[yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed, _nextofkin]
 
 // On body delivery:
 [yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin, _body]
