@@ -368,6 +368,14 @@ GR_fnc_makeMissionDeliverBody = {
 						[_task,"Succeeded",false] call BIS_fnc_taskSetState;
 						["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
 						
+						// remove from player responsibility
+						_deathArray = [GR_PLAYER_TASKS,_pName] call CBA_fnc_hashGet;
+						if (count _deathArray > 0) then {
+							_deathArray = _deathArray - [_kin];
+							[GR_PLAYER_TASKS,_pName,_deathArray] call CBA_fnc_hashSet; 
+						};
+						[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
+						
 						// Remove failure upon death event
 						_kin removeEventHandler ["Killed", _handle];
 						
@@ -386,35 +394,27 @@ GR_fnc_makeMissionDeliverBody = {
 						// _grp = createGroup EAST;
 						// [_kin] joinSilent _grp;
  						
- 						_bodyDelivered = true;
+ 						// remove this action and garbage collect if allowed
+						[_kin,_body,_task] spawn {
+							params["_kin","_body","_task"];
+							sleep 180;
+							[_task] call BIS_fnc_deleteTask;
+			
+							if ( _kin getVariable ["GR_WILLDELETE",false] ) then {
+								deleteVehicle _kin;;
+							};
+			
+							if ( _body getVariable ["GR_WILLDELETE",false] ) then {
+								deleteVehicle _body;
+							};
+						};
+						
+						_bodyDelivered = true;
 					};
 				};
 			};
 
 			( (!alive _kin) || _bodyDelivered )
-		};
-		
-		// remove from GR_PLAYER_TASKS
-		_deathArray = [GR_PLAYER_TASKS,_pName] call CBA_fnc_hashGet;
-		if (count _deathArray > 0) then {
-			_deathArray = _deathArray - [_kin];
-			[GR_PLAYER_TASKS,_pName,_deathArray] call CBA_fnc_hashSet; 
-		};
-		[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
-		
-		// remove this action and garbage collect if allowed
-		[_kin,_body,_task] spawn {
-			params["_kin","_body","_task"];
-			sleep 180;
-			[_task] call BIS_fnc_deleteTask;
-			
-			if ( _kin getVariable ["GR_WILLDELETE",false] ) then {
-				deleteVehicle _kin;;
-			};
-			
-			if ( _body getVariable ["GR_WILLDELETE",false] ) then {
-				deleteVehicle _body;
-			};
 		};
 	};
 };
