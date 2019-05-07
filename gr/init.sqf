@@ -168,8 +168,8 @@ GR_fnc_vandalizegrave = {
 				// Clean up
 				_target setVariable ["GR_HIDEBODY_TASK",""];
 				if ( _kin getVariable ["GR_WILLDELETE",false] ) then {
-					deleteVehicle _kin;
 					_target setVariable ["GR_NEXTOFKIN",objNull];
+					deleteVehicle _kin;
 				};
 				
 				[_task] spawn {
