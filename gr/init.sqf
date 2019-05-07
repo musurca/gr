@@ -7,7 +7,7 @@
 
 in your mission's init.sqf, add the following lines:
 ------------------------------------------------------
-// customize with the civilian types that will receive 
+// customize with the civilian types that will act as next-of-kin
 GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
 [] call compile preprocessFile "gr\init.sqf";
 
@@ -129,10 +129,8 @@ GR_fnc_vandalizegrave = {
 				_kin = _target getVariable "GR_NEXTOFKIN";
 				[_task,"Succeeded",false] call BIS_fnc_taskSetState;
 				["TaskSucceeded",["","Conceal Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-				// TODO: insert reward code here
-				// e.g. [_taskSide,10] call MP_addForcePool;
-				//[] call AOT_concealCivDeath;
-				
+
+				// Custom event upon concealment of death
 				{
  					[_taskOwner] call _x;
  				} forEach GR_EH_CONCEALDEATH;
@@ -338,15 +336,12 @@ GR_fnc_makeMissionDeliverBody = {
 
 						[_task,"Succeeded",false] call BIS_fnc_taskSetState;
 						["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-						// TODO: insert reward code here
-						// e.g. [_taskSide, 50] call MP_addForcePool;
 						[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
 						
-						// Call custom body delivery code
+						// Call custom events upon delivery of body
 						{
  							[_taskOwner] call _x;
  						} forEach GR_EH_DELIVERBODY;
-						//[] call AOT_deliverBody;
 
 						// Remove failure upon death event
 						_kin removeEventHandler ["Killed", _handle];
@@ -395,16 +390,13 @@ if (isServer) then {
 		};
 
 		if ((side group _killed) == civilian) then {
-			// TODO: insert penalization code here
-			// e.g. [side _killer, -25] call MP_addForcePool;
-			//[] call AOT_penalizeCivDeath;
 			_vicAge = round random [12,40,79];
 			_killed setVariable ["AGE",_vicAge,true];
 
 			_text = format ["<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>", name _killer, name _killed, _vicAge];
 			_text remoteExec ["GR_fnc_MPhint", side _killer];
 
-			// Call custom civilian death penalization code
+			// Call custom event upon civilian murder
 			{
  				[_killer, _killed] call _x;
  			} forEach GR_EH_CIVDEATH;
