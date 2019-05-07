@@ -12,6 +12,10 @@ in your mission's init.sqf, add the following lines:
 GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
 // set the maximum distance from murder than next-of-kin will be spawned
 GR_MAX_KIN_DIST = 10000;
+// Chance that a player murdering a civilian will get an "apology" mission
+GR_MISSION_CHANCE = 100;
+
+// Initializes the Guilt & Remembrance system
 [] call compile preprocessFile "gr\init.sqf";
 
 
@@ -32,10 +36,13 @@ GR_MAX_KIN_DIST = 10000;
 
 */
 
+// Set some reasonable default values
 if (isNil "GR_MAX_KIN_DIST") then {
 	GR_MAX_KIN_DIST=20000;
 };
-
+if (isNil "GR_MISSION_CHANCE") then {
+	GR_MISSION_CHANCE=100;
+};
 if (isNil "GR_CIV_TYPES") then {
 	GR_CIV_TYPES=["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
 };
@@ -455,7 +462,14 @@ if (isServer) then {
 
 			// Players get an "apology" mission
 			if (isPlayer _killer) then {
-				[_killer, _killed, getPos _killed, name _killed] spawn GR_fnc_makeMissionDeliverBody;
+				if( (random 100) < GR_MISSION_CHANCE ) then {
+					[_killer, _killed, getPos _killed, name _killed] spawn GR_fnc_makeMissionDeliverBody;
+				} else {
+					// Call custom event upon civilian murder by player anyway
+					{
+ 						[_killer, _killed, nil] call _x;
+ 					} forEach GR_EH_CIVDEATH;
+				};
 			};
 		};
 	}] call CBA_fnc_addClassEventHandler;

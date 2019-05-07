@@ -8,14 +8,18 @@ Usage:
 in your mission's init.sqf, add the following lines:
 
 ```
-/// set the civilian types that will act as next-of-kin
+// set the civilian types that will act as next-of-kin
 GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
 // set the maximum distance from murder than next-of-kin will be spawned
 GR_MAX_KIN_DIST = 10000;
+// Chance that a player murdering a civilian will get an "apology" mission
+GR_MISSION_CHANCE = 100;
+
+// Initializes the Guilt & Remembrance system
 [] call compile preprocessFile "gr\init.sqf";
 
 
-/// OPTIONAL: register custom event functions, e.g.
+// OPTIONAL: register custom event functions, e.g.
 
 // On civilian murder by player:
 [yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed, _nextofkin]
