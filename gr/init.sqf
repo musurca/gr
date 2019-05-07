@@ -1,3 +1,24 @@
+/*
+--------------------------------------------
+ GUILT & REMEMBRANCE for ARMA 3
+ by musurca
+ 
+ Usage:
+
+in your mission's init.sqf, add the following lines:
+------------------------------------------------------
+// customize with the civilian types that will receive 
+GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
+[] call compile preprocessFile "gr\init.sqf";
+
+
+// OPTIONAL: register custom event functions, e.g.
+[ALIVE_reduceForcePool] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed]
+[ALiVE_addForcePoolBig] call GR_fnc_addDeliverBodyEventHandler; // args [_killer]
+[ALiVE_addForcePoolSmall] call GR_fnc_addConcealDeathEventHandler; // args [_killer]
+
+*/
+
 GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
 GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 
