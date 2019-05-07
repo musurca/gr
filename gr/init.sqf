@@ -13,9 +13,17 @@ GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
 
 
 // OPTIONAL: register custom event functions, e.g.
-[ALIVE_reduceForcePool] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed]
-[ALiVE_addForcePoolBig] call GR_fnc_addDeliverBodyEventHandler; // args [_killer]
-[ALiVE_addForcePoolSmall] call GR_fnc_addConcealDeathEventHandler; // args [_killer]
+
+// On civilian murder:
+[yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed]
+
+// On body delivery:
+[yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin]
+// NOTE: if your event uses _nextofkin, turn off garbage collection with:
+// _nextofkin setVariable ["GR_WILLDELETE",false];
+
+// On concealment of a death:
+[yourCustomEvent_OnConcealDeath] call GR_fnc_addConcealDeathEventHandler; // args [_killer, _grave]
 
 */
 
@@ -132,7 +140,7 @@ GR_fnc_vandalizegrave = {
 
 				// Custom event upon concealment of death
 				{
- 					[_taskOwner] call _x;
+ 					[_taskOwner, _target] call _x;
  				} forEach GR_EH_CONCEALDEATH;
 
 				// Clean up
@@ -326,26 +334,28 @@ GR_fnc_makeMissionDeliverBody = {
 					if (_body != objNull) then {
 						_kin lookAt _body;
 
-						// TODO various text reactions
+						[_task,"Succeeded",false] call BIS_fnc_taskSetState;
+						["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
+						[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
+						
+						// Remove failure upon death event
+						_kin removeEventHandler ["Killed", _handle];
+						
+						_kin setVariable ["GR_WILLDELETE",true];
+						// Call custom events upon delivery of body
+						{
+ 							[_taskOwner, _kin] call _x;
+ 						} forEach GR_EH_DELIVERBODY;
+ 						
+ 						// TODO various text reactions
 						// indifferent, beneficent, annoyed at the inconvenence, grief-stricken, in a rage
 						// pull out a gun and shoot you, etc., make all the local civilians turn into a militia
 						// _kin addMagazine "somepistolammo";
 						// _kin addWeapon "somepisol";
 						// _grp = createGroup EAST;
 						// [_kin] joinSilent _grp;
-
-						[_task,"Succeeded",false] call BIS_fnc_taskSetState;
-						["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-						[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
-						
-						// Call custom events upon delivery of body
-						{
- 							[_taskOwner] call _x;
- 						} forEach GR_EH_DELIVERBODY;
-
-						// Remove failure upon death event
-						_kin removeEventHandler ["Killed", _handle];
-						_bodyDelivered = true;
+ 						
+ 						_bodyDelivered = true;
 					};
 				};
 			};
@@ -353,17 +363,24 @@ GR_fnc_makeMissionDeliverBody = {
 			( (!alive _kin) || _bodyDelivered )
 		};
 		
-		// remove this action and garbage collect
-		sleep 180;
-		deleteVehicle _kin;
-		deleteVehicle _body;
-		[_task] call BIS_fnc_deleteTask;
-		
 		// remove from GR_PLAYER_TASKS
 		_deathArray = [GR_PLAYER_TASKS,_name] call CBA_fnc_hashGet;
 		if (count _deathArray > 0) then {
 			_deathArray = _deathArray - [_kin];
 			[GR_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
+		};
+		
+		// remove this action and garbage collect if allowed
+		[_kin,_body,_task] spawn {
+			params["_kin","_body","_task"];
+			sleep 180;
+			[_task] call BIS_fnc_deleteTask;
+			
+			while { !(_kin getVariable ["GR_WILLDELETE",false]) } do {
+				sleep 180;
+			};
+			deleteVehicle _kin;
+			deleteVehicle _body;
 		};
 	};
 };
