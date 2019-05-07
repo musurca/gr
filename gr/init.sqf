@@ -7,8 +7,10 @@
 
 in your mission's init.sqf, add the following lines:
 ------------------------------------------------------
-// customize with the civilian types that will act as next-of-kin
+// set the civilian types that will act as next-of-kin
 GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
+// set the maximum distance from murder than next-of-kin will be spawned
+GR_MAX_KIN_DIST = 10000;
 [] call compile preprocessFile "gr\init.sqf";
 
 
@@ -18,14 +20,24 @@ GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
 [yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed]
 
 // On body delivery:
-[yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin]
-// NOTE: if your event uses _nextofkin, turn off garbage collection with:
-// _nextofkin setVariable ["GR_WILLDELETE",false];
+[yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin, _body]
 
 // On concealment of a death:
-[yourCustomEvent_OnConcealDeath] call GR_fnc_addConcealDeathEventHandler; // args [_killer, _grave]
+[yourCustomEvent_OnConcealDeath] call GR_fnc_addConcealDeathEventHandler; // args [_killer, _nextofkin, _grave]
+
+// NOTE: if your event uses _nextofkin or _body, make sure to turn off garbage collection with:
+// _nextofkin setVariable ["GR_WILLDELETE",false];
+// _body setVariable ["GR_WILLDELETE",false];
 
 */
+
+if (isNil "GR_MAX_KIN_DIST") then {
+	GR_MAX_KIN_DIST=20000;
+};
+
+if (isNil "GR_CIV_TYPES") then {
+	GR_CIV_TYPES=["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
+};
 
 GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
 GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
@@ -138,16 +150,27 @@ GR_fnc_vandalizegrave = {
 				[_task,"Succeeded",false] call BIS_fnc_taskSetState;
 				["TaskSucceeded",["","Conceal Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
 
+				// Remove from player responsibilities
+				_pName = name _taskOwner;
+				_deathArray = [GR_PLAYER_TASKS,_pName] call CBA_fnc_hashGet;
+				if (count _deathArray > 0) then {
+					_deathArray = _deathArray - [_kin];
+					[GR_PLAYER_TASKS,_pName,_deathArray] call CBA_fnc_hashSet; 
+				};
+				[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
+
+				_kin setVariable ["GR_WILLDELETE",true];
 				// Custom event upon concealment of death
 				{
  					[_taskOwner, _target] call _x;
  				} forEach GR_EH_CONCEALDEATH;
 
 				// Clean up
-				deleteVehicle _kin;
-				[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
 				_target setVariable ["GR_HIDEBODY_TASK",""];
-				_target setVariable ["GR_NEXTOFKIN",objNull];
+				if ( _kin getVariable ["GR_WILLDELETE",false] ) then {
+					deleteVehicle _kin;
+					_target setVariable ["GR_NEXTOFKIN",objNull];
+				};
 				
 				[_task] spawn {
 					sleep 180;
@@ -244,7 +267,7 @@ GR_fnc_makeMissionDeliverBody = {
 	};
 
 	// Spawn the next-of-kin somewhere within 20km
-	_locs = nearestLocations [_deathPos, ["NameCity","NameCityCapital","NameVillage"], 4000];
+	_locs = nearestLocations [_deathPos, ["NameCity","NameCityCapital","NameVillage"], GR_MAX_KIN_DIST];
 	_bposlist = [];
 	while {count _bposlist == 0} do {
 		_startLocPos = _deathPos;
@@ -287,6 +310,14 @@ GR_fnc_makeMissionDeliverBody = {
 
 		[_task,"Failed",false] call BIS_fnc_taskSetState;
 		["TaskFailed",["","Deal with Civilian Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
+		
+		// Remove from player responsibilities
+		_pName = name _taskOwner;
+		_deathArray = [GR_PLAYER_TASKS,_pName] call CBA_fnc_hashGet;
+		if (count _deathArray > 0) then {
+			_deathArray = _deathArray - [_kin];
+			[GR_PLAYER_TASKS,_pName,_deathArray] call CBA_fnc_hashSet; 
+		};
 		[GR_TASK_OWNERS,_task] call CBA_fnc_hashRem;		
 
 		// Clean up
@@ -306,8 +337,8 @@ GR_fnc_makeMissionDeliverBody = {
 	[GR_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
 
 	// Handle body delivery or death of next of kin
-	[_nextOfKin, _eh] spawn {
-		params["_kin","_handle"];
+	[_nextOfKin, _eh, _playerName] spawn {
+		params["_kin","_handle","_pName"];
 
 		_task = _kin getVariable ["GR_DELIVERBODY_TASK",""];
 		_taskInfo = [GR_TASK_OWNERS,_task] call CBA_fnc_hashGet;
@@ -336,15 +367,15 @@ GR_fnc_makeMissionDeliverBody = {
 
 						[_task,"Succeeded",false] call BIS_fnc_taskSetState;
 						["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-						[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
 						
 						// Remove failure upon death event
 						_kin removeEventHandler ["Killed", _handle];
 						
 						_kin setVariable ["GR_WILLDELETE",true];
+						_body setVariable ["GR_WILLDELETE",true];
 						// Call custom events upon delivery of body
 						{
- 							[_taskOwner, _kin] call _x;
+ 							[_taskOwner, _kin, _body] call _x;
  						} forEach GR_EH_DELIVERBODY;
  						
  						// TODO various text reactions
@@ -364,11 +395,12 @@ GR_fnc_makeMissionDeliverBody = {
 		};
 		
 		// remove from GR_PLAYER_TASKS
-		_deathArray = [GR_PLAYER_TASKS,_name] call CBA_fnc_hashGet;
+		_deathArray = [GR_PLAYER_TASKS,_pName] call CBA_fnc_hashGet;
 		if (count _deathArray > 0) then {
 			_deathArray = _deathArray - [_kin];
-			[GR_PLAYER_TASKS,_playerName,_deathArray] call CBA_fnc_hashSet; 
+			[GR_PLAYER_TASKS,_pName,_deathArray] call CBA_fnc_hashSet; 
 		};
+		[GR_TASK_OWNERS, _task] call CBA_fnc_hashRem;
 		
 		// remove this action and garbage collect if allowed
 		[_kin,_body,_task] spawn {
@@ -376,11 +408,13 @@ GR_fnc_makeMissionDeliverBody = {
 			sleep 180;
 			[_task] call BIS_fnc_deleteTask;
 			
-			while { !(_kin getVariable ["GR_WILLDELETE",false]) } do {
-				sleep 180;
+			if ( _kin getVariable ["GR_WILLDELETE",false] ) then {
+				deleteVehicle _kin;;
 			};
-			deleteVehicle _kin;
-			deleteVehicle _body;
+			
+			if ( _body getVariable ["GR_WILLDELETE",false] ) then {
+				deleteVehicle _body;
+			};
 		};
 	};
 };
