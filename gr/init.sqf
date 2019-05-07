@@ -409,7 +409,7 @@ GR_fnc_makeMissionDeliverBody = {
 							[_task] call BIS_fnc_deleteTask;
 			
 							if ( _kin getVariable ["GR_WILLDELETE",false] ) then {
-								deleteVehicle _kin;;
+								deleteVehicle _kin;
 							};
 			
 							if ( _body getVariable ["GR_WILLDELETE",false] ) then {
