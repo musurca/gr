@@ -2,6 +2,7 @@
 --------------------------------------------
  GUILT & REMEMBRANCE for ARMA 3
  by musurca
+ (v1.0)
  
  Usage:
 
@@ -16,8 +17,8 @@ GR_MAX_KIN_DIST = 10000;
 
 // OPTIONAL: register custom event functions, e.g.
 
-// On civilian murder:
-[yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed]
+// On civilian murder by player:
+[yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed, _nextofkin]
 
 // On body delivery:
 [yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin, _body]
@@ -287,7 +288,7 @@ GR_fnc_makeMissionDeliverBody = {
 
 	_nextOfKinGrp = createGroup civilian;
 	_nextOfKinGrp = [_spawnPos, civilian, [selectRandom GR_CIV_TYPES]] call BIS_fnc_spawnGroup;
-	sleep 5;
+	sleep 2;
 	_nextOfKin = (units _nextOfKinGrp) select 0;
 	_nextOfKin setPosATL _spawnPos;
 	_nextOfKin setUnitPos "up";
@@ -417,6 +418,11 @@ GR_fnc_makeMissionDeliverBody = {
 			( (!alive _kin) || _bodyDelivered )
 		};
 	};
+	
+	// Call custom event upon civilian murder by player
+	{
+ 		[_killer, _killed, _nextOfKin] call _x;
+ 	} forEach GR_EH_CIVDEATH;
 };
 
 if (isServer) then {
@@ -446,11 +452,6 @@ if (isServer) then {
 
 			_text = format ["<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>", name _killer, name _killed, _vicAge];
 			_text remoteExec ["GR_fnc_MPhint", side _killer];
-
-			// Call custom event upon civilian murder
-			{
- 				[_killer, _killed] call _x;
- 			} forEach GR_EH_CIVDEATH;
 
 			// Players get an "apology" mission
 			if (isPlayer _killer) then {
