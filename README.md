@@ -27,7 +27,7 @@ The following settings are customizable from your mission scripts:
 ```
 // set the civilian types that will act as next-of-kin
 GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
-// set the maximum distance from murder than next-of-kin will be spawned
+// set the maximum distance from murder that next-of-kin will be spawned
 GR_MAX_KIN_DIST = 20000;
 // Chance that a player murdering a civilian will get an "apology" mission
 GR_MISSION_CHANCE = 100;
