@@ -4,7 +4,18 @@ Requirements: CBA_A3, ACE3
 
 v1.0
 
-The following settings are customizable by mission creators from scripts:
+Features:
+* When a player kills a civilian, a task is generated requiring the player to place the body of the dead civilian in a body bag, then deliver it to their next-of-kin, who lives in a house in the AO (within 20km by default).
+* Alternatively, players can elect to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
+* Any corpse in a body bag can be buried or exhumed.
+* Burying a corpse produces a burial mound from which the dead person’s name and age can be read.
+* Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
+
+Planned features to come:
+
+* Medics will be able to perform an autopsy to determine cause of death and probable faction of killer (when near medical facility)
+
+The following settings are customizable by mission creators:
 
 ```
 // set the civilian types that will act as next-of-kin
