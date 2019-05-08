@@ -17,7 +17,9 @@ v1.0
 **FOR PLAYERS:**
 In order to deliver a dead civilian to their next-of-kin, you must first place it in a Body Bag via an ACE action (Interactions -> Place body in body bag). The Body Bag can then be loaded into the cargo of a vehicle, driven to the destination, unloaded, and then manually dragged to the next-of-kin.
 
-You can also bury or exhume body bags if you are carrying an Entrenching Tool.
+(Note: while the task to deliver the body is created immediately after you have killed the civilian, you will not be notified for 20-60 seconds so as not to distract you if you happen to be in the middle of combat.)
+
+You can also bury or exhume any body bags if you are carrying an Entrenching Tool.
 
 **FOR MISSION CREATORS:**
 The following settings are customizable from your mission scripts:
