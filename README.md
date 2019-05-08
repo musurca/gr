@@ -5,7 +5,7 @@ Requirements: CBA_A3, ACE3
 v1.0
 
 Features:
-* When a player kills a civilian, a new task is generated requiring the player to deliver the body of the dead civilian to their next-of-kin, who lives in a house in the AO (within 20km by default).
+* When a player kills a civilian, a new task is generated requiring the player to deliver the body to their next-of-kin, who lives in a house in the AO (within 20km by default).
 * Alternatively, players may attempt to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
 * Any corpse in a body bag can now be buried or exhumed (requires an Entrenching Tool).
 * Burying any corpse produces a burial mound from which the dead person’s name and age can be read.
