@@ -1,6 +1,6 @@
 # Guilt & Remembrance
 Mod for handling civilian deaths, reparations, and war crimes in Arma 3 missions.
-Requirements: CBA_A3, ACE3
+Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
 
 v1.0
 
