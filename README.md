@@ -55,3 +55,9 @@ sleep 1;
 // _body setVariable ["GR_WILLDELETE",false];
 };
 ```
+
+GUILT & REMEMBRANCE is fully signed for multiplayer use, and has been tested on local and dedicated servers.
+
+For questions, comments, or bug reports, please contact me directly at nick.musurca@gmail.com.
+
+GUILT & REMEMBRANCE is licensed under APL-SA (Arma Public License - Share-Alike) and is free for non-commercial use. If you add it to your server, please tell me about it — I'm interested in how this mod will be used.
