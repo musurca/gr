@@ -60,3 +60,6 @@ sleep 1;
 GUILT & REMEMBRANCE is licensed under [APL-SA (Arma Public License - Share-Alike)](https://www.bohemia.net/community/licenses/arma-public-license-share-alike) and is free for non-commercial use. If you add it to your server, please tell me about it — I'm interested in how this mod will be used.
 
 For questions, comments, or bug reports, please contact me directly at nick.musurca@gmail.com.
+
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1736188034)
+[Bohemia Forums](https://forums.bohemia.net/forums/topic/223257-guilt-remembrance-civilian-deaths-reparations-war-crimes/)
