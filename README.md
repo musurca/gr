@@ -1,5 +1,5 @@
 # Guilt & Remembrance
-Mod for handling civilian deaths, reparations, and war crimes in Arma 3. Atone for your "collateral damage" by delivering the bodies of dead civilians to their next-of-kin -- or else attempt to conceal the deaths by secretly disposing of the bodies.
+Mod for handling civilian deaths, reparations, and war crimes in Arma 3. Atone for your "collateral damage" by delivering the bodies of dead civilians to their next-of-kin -- or else attempt to conceal the deaths by secretly disposing of the evidence.
 
 Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
 
