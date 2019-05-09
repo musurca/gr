@@ -1,8 +1,7 @@
 # Guilt & Remembrance
-Mod for handling civilian deaths, reparations, and war crimes in Arma 3 missions.
-Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
+Mod for handling civilian deaths, reparations, and war crimes in Arma 3. Atone for your "collateral damage" by delivering the bodies of dead civilians to their next-of-kin -- or else attempt to conceal the deaths by secretly disposing of the bodies.
 
-v1.0
+Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
 
 **Features:**
 * When a player kills a civilian, a new task is generated requiring the player to deliver the body to their next-of-kin, who lives in a house in the AO (within 20km by default).
@@ -21,8 +20,10 @@ In order to deliver a dead civilian to their next-of-kin, you must first place i
 
 You can also bury or exhume any body bags if you are carrying an Entrenching Tool.
 
-**FOR MISSION CREATORS:**
-The following settings are customizable from your mission scripts:
+**FOR MISSION CREATORS & SERVER OPERATORS:**
+This mod is fully signed for multiplayer use, and has been tested on both local and dedicated servers. It must be run on both the client and server. 
+
+The following mod settings are customizable from your mission scripts:
 
 ```
 // set the civilian types that will act as next-of-kin
@@ -56,6 +57,6 @@ sleep 1;
 };
 ```
 
-GUILT & REMEMBRANCE is fully signed for multiplayer use, and has been tested on local and dedicated servers. It is licensed under [APL-SA (Arma Public License - Share-Alike)](https://www.bohemia.net/community/licenses/arma-public-license-share-alike) and is free for non-commercial use. If you add it to your server, please tell me about it — I'm interested in how this mod will be used.
+GUILT & REMEMBRANCE is licensed under [APL-SA (Arma Public License - Share-Alike)](https://www.bohemia.net/community/licenses/arma-public-license-share-alike) and is free for non-commercial use. If you add it to your server, please tell me about it — I'm interested in how this mod will be used.
 
 For questions, comments, or bug reports, please contact me directly at nick.musurca@gmail.com.
