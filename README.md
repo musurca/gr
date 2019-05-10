@@ -1,4 +1,4 @@
-# Guilt & Remembrance
+﻿# Guilt & Remembrance
 Mod for handling civilian deaths, reparations, and war crimes in Arma 3. Atone for your "collateral damage" by bringing the bodies of dead civilians back to their family — or else attempt to conceal the deaths by secretly disposing of the evidence.
 
 Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
@@ -20,7 +20,7 @@ In order to deliver a dead civilian to their family member, you must first place
 
 You can also bury or exhume any body bags if you are carrying an Entrenching Tool.
 
-You can change how the notification for civilian casualties is displayed in your Addon Settings (listed under "Guilt & Remembrance."). Note that this setting may be overriden by the mission creator or server operator.
+You can change how your notifications for civilian casualties are displayed in your Addon Settings (listed under "Guilt & Remembrance."). Note that this setting may be overriden by the mission creator or server operator.
 
 **FOR MISSION CREATORS & SERVER OPERATORS:**
 This mod is fully signed for multiplayer use, and has been tested on both local and dedicated servers. It must be run on both the client and server. 
@@ -41,12 +41,6 @@ GR_MISSION_CHANCE = 100;
 GR_TASK_MIN_DELAY=20;
 GR_TASK_MID_DELAY=40;
 GR_TASK_MAX_DELAY=60;
-
-// Make a custom body delivery mission by spawning the function directly.
-// You can let the function generate a relative for the dead civilian, or else specify one yourself.
-// args: [_playerUnit, _yourDeadCivilian, (OPTIONAL) _yourCustomKin] spawn GR_fnc_makeMissionDeliverBody;
-myCustomCivilian setDammage 1; // pre-kill the civilian unit
-[_playerUnit, myCustomCivilian, myCustomKin] spawn GR_fnc_makeMissionDeliverBody;
 
 // You can also add/remove custom event handlers to be called upon
 // certain events. Adding event handlers must occur AFTER postInit
@@ -89,8 +83,6 @@ v1.1 (in development):
 * civilian deaths now always add a diary record
 * added more classes to default GR_CIV_TYPES
 * GR_TASK_MIN/MID/MAX_DELAY
-* changed GR_fnc_makeMissionDeliverBody to support specifying an existing next-of-kin
-* documented GR_fnc_makeMissionDeliverBody for custom use by mission creators
 
 v1.0 (May 8, 2019):
 * Initial release

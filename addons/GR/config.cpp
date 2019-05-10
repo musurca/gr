@@ -17,6 +17,7 @@ class CfgFunctions
     	class funcs
     	{
         	file = "\GR\functions";
+        	class initCBA							{ preInit = 1; };
 			class initClient      	  				{ postInit = 1; }; 
 			class initServer          				{ postInit = 1; }; 
 			class makeMissionDeliverBody			{};
@@ -32,8 +33,4 @@ class CfgFunctions
 			class MPhint							{};
     	};
 	};
-};
-
-class Extended_PreInit_EventHandlers {
-	GRSettingsInit = call compile preprocessFileLineNumbers "XEH_PreInit.sqf";
 };

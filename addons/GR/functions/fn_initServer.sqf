@@ -59,9 +59,7 @@ GR_EH_CONCEALDEATH = [];
 		_vicAge = round random [15,40,79];
 		_killed setVariable ["AGE",_vicAge];
 
-		// Notify the player of the killing
-		//_text = format [GR_NOTIFY_TEXT, name _killer, name _killed, _vicAge];
-		//_text remoteExec ["GR_fnc_MPhint", side _killer];
+		// Notify the players of the killing
 		[name _killer, name _killed, _vicAge] remoteExec ["GR_fnc_MPhint", side _killer];
 
 		// Players get an "apology" mission

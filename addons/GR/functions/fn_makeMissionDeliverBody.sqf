@@ -6,53 +6,46 @@
  Spawn a next-of-kin, and create a task to deliver the body of the corpse to him.
  Handles both mission success and the untimely death of the next-of-kin.
 
- Can be called with optional third parameter _customKin, if you want to specify
- an existing unit to be the nearest relative.
-
 */
-params["_killer", "_killed", "_customKin"];
+params["_killer", "_killed"];
 	
 _corpseId = netId _killed;
 if (isInRemainsCollector _killed) then {
 	removeFromRemainsCollector [_killed];
 };
 
-if (isNil "_customKin") {
-	// Spawn the next-of-kin somewhere within GR_MAX_KIN_DIST (20km by default)
-	_deathPos = getPos _killed;
-	_locs = (nearestLocations [_deathPos, ["NameCity","NameCityCapital","NameVillage"], GR_MAX_KIN_DIST]) call BIS_fnc_arrayShuffle;
-	_locSelect = 0;
-	_bposlist = [];
-	while { (count _bposlist == 0) && (_locSelect < (count _locs)) } do {
-		_startLocPos = _deathPos;
-		_startLocPos = locationPosition (_locs select _locSelect);
+// Spawn the next-of-kin somewhere within GR_MAX_KIN_DIST (20km by default)
+_deathPos = getPos _killed;
+_locs = (nearestLocations [_deathPos, ["NameCity","NameCityCapital","NameVillage"], GR_MAX_KIN_DIST]) call BIS_fnc_arrayShuffle;
+_locSelect = 0;
+_bposlist = [];
+while { (count _bposlist == 0) && (_locSelect < (count _locs)) } do {
+	_startLocPos = _deathPos;
+	_startLocPos = locationPosition (_locs select _locSelect);
 
-		// Find a house within 300m of town center and put him in it
-		_nearBldgs = nearestTerrainObjects [_startLocPos, ["House","Church","Chapel","Building","Hospital"], 300,false];
-		{
-			if ([_x] call BIS_fnc_isBuildingEnterable) then {
-				_bposlist append (_x buildingPos -1);
-			};
-		} forEach _nearBldgs;
-		_locSelect = _locSelect+1;
-	};
-	if (count _bposlist == 0) exitWith { // no place for kin to spawn
-		// call event handler without kin and exit
-		{
-			[_killer, _killed, nil] call _x;
-		} forEach GR_EH_CIVDEATH
-	};
-		
-	_spawnPos = (selectRandom _bposlist);
-
-	_nextOfKinGrp = createGroup civilian;
-	_nextOfKinGrp = [_spawnPos, civilian, [selectRandom GR_CIV_TYPES]] call BIS_fnc_spawnGroup;
-	sleep 2;
-	_nextOfKin = (units _nextOfKinGrp) select 0;
-	_nextOfKin setPosATL _spawnPos;
-} else {
-	_nextOfKin=_customKin;
+	// Find a house within 300m of town center and put him in it
+	_nearBldgs = nearestTerrainObjects [_startLocPos, ["House","Church","Chapel","Building","Hospital"], 300,false];
+	{
+		if ([_x] call BIS_fnc_isBuildingEnterable) then {
+			_bposlist append (_x buildingPos -1);
+		};
+	} forEach _nearBldgs;
+	_locSelect = _locSelect+1;
 };
+if (count _bposlist == 0) exitWith { // no place for kin to spawn
+	// call event handler without kin and exit
+	{
+		[_killer, _killed, nil] call _x;
+	} forEach GR_EH_CIVDEATH
+};
+		
+_spawnPos = (selectRandom _bposlist);
+
+_nextOfKinGrp = createGroup civilian;
+_nextOfKinGrp = [_spawnPos, civilian, [selectRandom GR_CIV_TYPES]] call BIS_fnc_spawnGroup;
+sleep 2;
+_nextOfKin = (units _nextOfKinGrp) select 0;
+_nextOfKin setPosATL _spawnPos;
 _nextOfKin setUnitPos "up";
 _nextOfKin allowFleeing 0;
 doStop _nextOfKin;

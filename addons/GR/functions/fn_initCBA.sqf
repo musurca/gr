@@ -1,6 +1,6 @@
 /*
 
- XEH_PreInit.sqf
+ fn_initCBA.sqf
  by @musurca
  
  Initializes CBA settings.
