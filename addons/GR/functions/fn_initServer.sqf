@@ -4,39 +4,6 @@
  by @musurca
  
  Initializes server global variables and event handlers.
- 
---------------------------------------------
- GUILT & REMEMBRANCE for ARMA 3
- by musurca
- (v1.0)
-------------------------------------------------------
-// You can change the GR defaults from your mission's init.sqf.
-
-// set the civilian types that will act as next-of-kin
-GR_CIV_TYPES = ["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
-// set the maximum distance from murder than next-of-kin will be spawned
-GR_MAX_KIN_DIST = 20000;
-// Chance that a player murdering a civilian will get an "apology" mission
-GR_MISSION_CHANCE = 100;
-
-// OPTIONAL: add/remove custom event handlers.
-// note: you MUST wait until after postInit to do this.
-
-// On civilian murder by player:
-[yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed, _nextofkin]
-[yourCustomEvent_OnCivDeath] call GR_fnc_removeCivDeathEventHandler;
-
-// On body delivery:
-[yourCustomEvent_OnDeliverBody] call GR_fnc_addDeliverBodyEventHandler; // args [_killer, _nextofkin, _body]
-[yourCustomEvent_OnDeliverBody] call GR_fnc_removeDeliverBodyEventHandler;
-
-// On concealment of a death:
-[yourCustomEvent_OnConcealDeath] call GR_fnc_addConcealDeathEventHandler; // args [_killer, _nextofkin, _grave]
-[yourCustomEvent_OnConcealDeath] call GR_fnc_removeConcealDeathEventHandler;
-
-// NOTE: if your event handler uses _nextofkin or _body, make sure to turn off garbage collection with:
-// _nextofkin setVariable ["GR_WILLDELETE",false];
-// _body setVariable ["GR_WILLDELETE",false];
 
 */
 
@@ -60,11 +27,10 @@ if (isNil "GR_TASK_MAX_DELAY") then {
 	GR_TASK_MAX_DELAY=60;
 };
 
-GR_NOTIFY_TEXT="<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>";
-
 GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
 GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 
+// For storing event handlers
 GR_EH_CIVDEATH = [];
 GR_EH_DELIVERBODY = [];
 GR_EH_CONCEALDEATH = [];
@@ -93,8 +59,10 @@ GR_EH_CONCEALDEATH = [];
 		_vicAge = round random [15,40,79];
 		_killed setVariable ["AGE",_vicAge];
 
-		_text = format [GR_NOTIFY_TEXT, name _killer, name _killed, _vicAge];
-		_text remoteExec ["GR_fnc_MPhint", side _killer];
+		// Notify the player of the killing
+		//_text = format [GR_NOTIFY_TEXT, name _killer, name _killed, _vicAge];
+		//_text remoteExec ["GR_fnc_MPhint", side _killer];
+		[name _killer, name _killed, _vicAge] remoteExec ["GR_fnc_MPhint", side _killer];
 
 		// Players get an "apology" mission
 		if (isPlayer _killer) then {

@@ -14,6 +14,10 @@ if (isNil "GR_DEATHNOTIFY_STYLE") then {
 	GR_DEATHNOTIFY_STYLE=GR_NOTIFY_HINT;
 };
 
+// Text data for notifications
+GR_CLIENT_NOTIFY_TEXT="<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>";
+GR_MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
 GR_ace_burialAction = ["actionBury","Bury","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
 	[

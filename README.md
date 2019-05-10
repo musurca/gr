@@ -86,6 +86,7 @@ CHANGELOG:
 
 v1.1 (in development):
 * added CBA setting to customize notification style
+* civilian deaths now always add a diary record
 * added more classes to default GR_CIV_TYPES
 * GR_TASK_MIN/MID/MAX_DELAY
 * changed GR_fnc_makeMissionDeliverBody to support specifying an existing next-of-kin
