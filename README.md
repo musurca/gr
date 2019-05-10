@@ -37,6 +37,11 @@ GR_MAX_KIN_DIST = 20000;
 // Chance that a player murdering a civilian will get an "apology" mission
 GR_MISSION_CHANCE = 100;
 
+// Delay in seconds after death until player is notified of body delivery mission
+GR_TASK_MIN_DELAY=20;
+GR_TASK_MID_DELAY=40;
+GR_TASK_MAX_DELAY=60;
+
 // Make a custom body delivery mission by spawning the function directly.
 // You can let the function generate a relative for the dead civilian, or else specify one yourself.
 // args: [_playerUnit, _yourDeadCivilian, (OPTIONAL) _yourCustomKin] spawn GR_fnc_makeMissionDeliverBody;
@@ -82,6 +87,7 @@ CHANGELOG:
 v1.1 (in development):
 * added CBA setting to customize notification style
 * added more classes to default GR_CIV_TYPES
+* GR_TASK_MIN/MID/MAX_DELAY
 * changed GR_fnc_makeMissionDeliverBody to support specifying an existing next-of-kin
 * documented GR_fnc_makeMissionDeliverBody for custom use by mission creators
 

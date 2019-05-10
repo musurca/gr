@@ -50,6 +50,15 @@ if (isNil "GR_MISSION_CHANCE") then {
 if (isNil "GR_CIV_TYPES") then {
 	GR_CIV_TYPES=["C_man_polo_1_F","C_man_polo_1_F_asia","C_man_polo_1_F_afro","C_man_polo_1_F_euro","C_man_polo_2_F","C_man_polo_2_F_afro","C_man_polo_2_F_euro","C_man_polo_2_F_asia","C_man_polo_5_F","C_man_polo_5_F_asia","C_man_polo_5_F_afro","C_man_polo_5_F_euro"];
 };
+if (isNil "GR_TASK_MIN_DELAY") then {
+	GR_TASK_MIN_DELAY=20;
+};
+if (isNil "GR_TASK_MID_DELAY") then {
+	GR_TASK_MID_DELAY=40;
+};
+if (isNil "GR_TASK_MAX_DELAY") then {
+	GR_TASK_MAX_DELAY=60;
+};
 
 GR_NOTIFY_TEXT="<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>";
 

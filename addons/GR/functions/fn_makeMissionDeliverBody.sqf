@@ -112,7 +112,7 @@ _deathArray pushBack _nextOfKin;
 	_playerUID = _taskInfo select 2;	
 
 	// Wait to announce the mission
-	sleep random [20, 40, 60];
+	sleep random [GR_TASK_MIN_DELAY, GR_TASK_MID_DELAY, GR_TASK_MAX_DELAY];
 	["TaskCreated",["","Deal with Civilian Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
 		
 	_bodyDelivered=false;
