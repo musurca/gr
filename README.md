@@ -78,7 +78,7 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
-v1.1 (in development):
+v1.1 (May 10, 2019):
 * added CBA setting to customize notification style
 * civilian deaths now always add a diary record
 * added more classes to default GR_CIV_TYPES
