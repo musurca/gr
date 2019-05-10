@@ -79,11 +79,11 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
-v1.1 (in development)
--added CBA setting to customize notification style
--added more classes to default GR_CIV_TYPES
--changed GR_fnc_makeMissionDeliverBody to support specifying an existing next-of-kin
--documented GR_fnc_makeMissionDeliverBody for custom use by mission creators
+v1.1 (in development):
+* added CBA setting to customize notification style
+* added more classes to default GR_CIV_TYPES
+* changed GR_fnc_makeMissionDeliverBody to support specifying an existing next-of-kin
+* documented GR_fnc_makeMissionDeliverBody for custom use by mission creators
 
-v1.0 (May 8, 2019)
-Initial release
+v1.0 (May 8, 2019):
+* Initial release
