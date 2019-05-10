@@ -3,8 +3,11 @@
  fn_MPhint.sqf
  by @musurca
  
- Simple function for printing formatted messages to players from server.
+ Function for printing text notifications from server. Depends on player/mission/server-determined notification style.
 
 */
 
-hintSilent parseText _this;
+switch (GR_DEATHNOTIFY_STYLE) do {
+	case GR_NOTIFY_HINT: { hintSilent parseText _this };
+	case GR_NOTIFY_SIDECHAT: { [side player, "HQ"] sideChat parseText _this };
+};

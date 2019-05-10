@@ -33,3 +33,7 @@ class CfgFunctions
     	};
 	};
 };
+
+class Extended_PreInit_EventHandlers {
+	GRSettingsInit = call compile preprocessFileLineNumbers "XEH_PreInit.sqf";
+};

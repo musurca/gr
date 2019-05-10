@@ -9,6 +9,11 @@
 
 if(!hasInterface) exitWith{};
 
+//shouldn't happen, but just in case of CBA failure
+if (isNil "GR_DEATHNOTIFY_STYLE") then { 
+	GR_DEATHNOTIFY_STYLE=GR_NOTIFY_HINT;
+};
+
 GR_ace_burialAction = ["actionBury","Bury","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
 	[

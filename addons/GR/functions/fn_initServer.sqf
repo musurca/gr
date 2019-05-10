@@ -48,8 +48,10 @@ if (isNil "GR_MISSION_CHANCE") then {
 	GR_MISSION_CHANCE=100;
 };
 if (isNil "GR_CIV_TYPES") then {
-	GR_CIV_TYPES=["C_man_polo_1_F_asia","C_man_polo_5_F_asia"];
+	GR_CIV_TYPES=["C_man_polo_1_F","C_man_polo_1_F_asia","C_man_polo_1_F_afro","C_man_polo_1_F_euro","C_man_polo_2_F","C_man_polo_2_F_afro","C_man_polo_2_F_euro","C_man_polo_2_F_asia","C_man_polo_5_F","C_man_polo_5_F_asia","C_man_polo_5_F_afro","C_man_polo_5_F_euro"];
 };
+
+GR_NOTIFY_TEXT="<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>";
 
 GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
 GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
@@ -82,13 +84,13 @@ GR_EH_CONCEALDEATH = [];
 		_vicAge = round random [15,40,79];
 		_killed setVariable ["AGE",_vicAge];
 
-		_text = format ["<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>", name _killer, name _killed, _vicAge];
+		_text = format [GR_NOTIFY_TEXT, name _killer, name _killed, _vicAge];
 		_text remoteExec ["GR_fnc_MPhint", side _killer];
 
 		// Players get an "apology" mission
 		if (isPlayer _killer) then {
 			if( (random 100) < GR_MISSION_CHANCE ) then {
-				[_killer, _killed, getPos _killed, name _killed] spawn GR_fnc_makeMissionDeliverBody;
+				[_killer, _killed] spawn GR_fnc_makeMissionDeliverBody;
 			} else {
 				// Call custom event upon civilian murder by player anyway
 				{
