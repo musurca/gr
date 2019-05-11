@@ -157,6 +157,11 @@ _deathArray pushBack _nextOfKin;
 						};
 			
 						if ( _body getVariable ["GR_WILLDELETE",false] ) then {
+							_cargo = (_body getVariable ["GR_CARGO"]) call BIS_fnc_objectFromNetId;
+							if (_cargo != objNull) then {
+								deleteVehicle _cargo;
+							};
+
 							deleteVehicle _body;
 						};
 					};

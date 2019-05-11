@@ -22,6 +22,7 @@ _dogtagData = _target getVariable "DOGTAG_DATA";
 _vicAge = _target getVariable "AGE";
 _task = _target getVariable ["GR_HIDEBODY_TASK",""];
 _nextOfKin = _target getVariable ["GR_NEXTOFKIN",objNull];
+_cargoId = _target getVariable ["GR_CARGO",0];
 deleteVehicle _target;
 
 _body = "ACE_bodyBagObject" createVehicle [0,0,0];
@@ -34,3 +35,16 @@ if (_task != "") then {
 	_body setVariable ["GR_HIDEBODY_TASK",_task];
 	_body setVariable ["GR_NEXTOFKIN",_nextOfKin];
 };
+
+_cargo = objNull;
+if (!(_cargoId isEqualTo 0)) then {
+	_cargo = _cargoId call BIS_fnc_objectFromNetId;
+};
+if (_cargo isEqualTo objNull) then {
+	_cargo = "Supply500" createVehicle [0,0,0];
+	_cargoId = _cargo call BIS_fnc_netId;
+};
+_cargo attachTo [_body, [0,0,0.85]];
+_body setVariable ["GR_CARGO",_cargoId];
+
+	

@@ -8,6 +8,7 @@ Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github
 * Alternatively, players may attempt to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
 * Any corpse in a body bag can now be buried or exhumed (requires an Entrenching Tool).
 * Burying any corpse produces a burial mound from which the dead person’s name and age can be read.
+* The inventory of the corpse is transferred to the body bag, and persists through burial and exhumation. (In other words, a grave can be used as a cache.)
 * Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
 
 **Planned features to come:**
@@ -74,6 +75,11 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 
 CHANGELOG:
 ---------------------
+
+v1.2 (May 11, 2019):
+* inventory of corpse now transfers to body bag
+* body bag inventory persistent through burial & exhumation
+* bugfixes for dedicated server
 
 v1.11 (May 10, 2019):
 * hotfix: singleplayer scenarios should now work
