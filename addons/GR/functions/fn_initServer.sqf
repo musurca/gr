@@ -7,6 +7,8 @@
 
 */
 
+if (!isServer) exitWith {};
+
 // Set some reasonable default values
 if (isNil "GR_MAX_KIN_DIST") then {
 	GR_MAX_KIN_DIST=20000;
