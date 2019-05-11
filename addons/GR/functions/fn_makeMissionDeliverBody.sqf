@@ -9,7 +9,7 @@
 */
 params["_killer", "_killed"];
 	
-_corpseId = netId _killed;
+_corpseId = _killed call BIS_fnc_netId;
 if (isInRemainsCollector _killed) then {
 	removeFromRemainsCollector [_killed];
 };
@@ -50,7 +50,7 @@ _nextOfKin setUnitPos "up";
 _nextOfKin allowFleeing 0;
 doStop _nextOfKin;
 
-_bigTask = format ["CivDead%1",netId _nextOfKin];
+_bigTask = format ["CivDead%1",_nextOfKin call BIS_fnc_netId];
 [side _killer,_bigTask,[format ["Deliver the body of %1 to his nearest relative.",name _killed],"Deal with Civilian Death","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
 
 _nextOfKin setVariable ["GR_DELIVERBODY_TASK",_bigTask];

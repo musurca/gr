@@ -43,10 +43,8 @@ GR_TASK_MID_DELAY=40;
 GR_TASK_MAX_DELAY=60;
 
 // You can also add/remove custom event handlers to be called upon
-// certain events. Adding event handlers must occur AFTER postInit
-// (in other words, just add a short sleep).
-[] spawn {
-sleep 1;
+// certain events.
+
 // On civilian murder by player:
 [yourCustomEvent_OnCivDeath] call GR_fnc_addCivDeathEventHandler; // args [_killer, _killed, _nextofkin]
 // (NOTE: _nextofkin will be nil if a body delivery mission wasn't generated.)
@@ -63,7 +61,6 @@ sleep 1;
 // NOTE: if your event handler uses _nextofkin or _body, make sure to turn off garbage collection with:
 // _nextofkin setVariable ["GR_WILLDELETE",false];
 // _body setVariable ["GR_WILLDELETE",false];
-};
 ```
 
 GUILT & REMEMBRANCE is licensed under [APL-SA (Arma Public License - Share-Alike)](https://www.bohemia.net/community/licenses/arma-public-license-share-alike) and is free for non-commercial use. If you add it to your server, please tell me about it — I'm interested in how this mod will be used.
@@ -77,6 +74,10 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 
 CHANGELOG:
 ---------------------
+
+v1.11 (May 10, 2019):
+* hotfix: singleplayer scenarios should now work
+* event handler init moved into preInit -- no need to sleep before adding them
 
 v1.1 (May 10, 2019):
 * added CBA setting to customize notification style

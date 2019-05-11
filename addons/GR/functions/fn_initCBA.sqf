@@ -3,10 +3,17 @@
  fn_initCBA.sqf
  by @musurca
  
- Initializes CBA settings.
+ Initializes CBA settings and mission event handlers.
 
  */
+ 
+ 
+// For storing event handlers
+GR_EH_CIVDEATH = [];
+GR_EH_DELIVERBODY = [];
+GR_EH_CONCEALDEATH = [];
 
+// CBA settings
 GR_NOTIFY_DIARY=0;
 GR_NOTIFY_SIDECHAT=1;
 GR_NOTIFY_HINT=2;

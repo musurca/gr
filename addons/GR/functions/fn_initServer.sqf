@@ -30,15 +30,10 @@ if (isNil "GR_TASK_MAX_DELAY") then {
 GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
 GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 
-// For storing event handlers
-GR_EH_CIVDEATH = [];
-GR_EH_DELIVERBODY = [];
-GR_EH_CONCEALDEATH = [];
-
 // trace ID of corpse
 ["ace_placedInBodyBag", {
 	params["_target","_bodybag"];
-	_bodybag setVariable ["CORPSE_ID",netId _target];
+	_bodybag setVariable ["CORPSE_ID",_target call BIS_fnc_netId];
 	_bodybag setVariable ["AGE",_target getVariable ["AGE",0],true]; // only broadcast AGE to clients when in the bodybag
 	_bodybag setVariable ["GR_NEXTOFKIN",_target getVariable ["GR_NEXTOFKIN",objNull]];
 	_bodybag setVariable ["GR_HIDEBODY_TASK",_target getVariable ["GR_HIDEBODY_TASK",""]];
