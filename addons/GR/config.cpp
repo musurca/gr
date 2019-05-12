@@ -19,7 +19,9 @@ class CfgFunctions
         	file = "\GR\functions";
         	class initCBA							{ preInit = 1; };
 			class initClient      	  				{ postInit = 1; }; 
-			class initServer          				{ postInit = 1; }; 
+			class initServer          				{ postInit = 1; };
+			class onUnitKilled						{};
+			class onZeusCivPlaced					{};			
 			class makeMissionDeliverBody			{};
 			class burybody							{};
 			class exhumebody						{};

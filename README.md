@@ -76,6 +76,9 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
+v1.21 (May 11, 2019):
+* bugfix: death of Zeus-placed civilians now registered on dedicated servers
+
 v1.2 (May 11, 2019):
 * inventory of corpse now transfers to body bag
 * body bag inventory persistent through burial & exhumation

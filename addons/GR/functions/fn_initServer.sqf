@@ -66,41 +66,7 @@ GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 	};
 }] call CBA_fnc_addEventHandler;
 
-["CAManBase", "killed",{ 
-	params ["_killed", ["_killer", objNull]];
-	if ((isNull _killer) || {_killer == _killed}) then {
-		_killer = _killed getVariable ["ace_medical_lastDamageSource", objNull];
-	};
-	
-	// See if it's a vehicle
- 	if ((!isNull _killer) && {!(_killer isKindof "CAManBase")}) then {
-		_killer = effectiveCommander _killer;
-	};
-
-	if ((side group _killed) == civilian) then {
-		_vicAge = round random [15,40,79];
-		_killed setVariable ["AGE",_vicAge];
-
-		// Notify the players of the killing
-		[name _killer, name _killed, _vicAge] remoteExec ["GR_fnc_MPhint", side _killer];
-
-		// Players get an "apology" mission
-		if (isPlayer _killer) then {
-			if( (random 100) < GR_MISSION_CHANCE ) then {
-				[_killer, _killed] spawn GR_fnc_makeMissionDeliverBody;
-			} else {
-				// Call custom event upon civilian murder by player anyway
-				{
- 					[_killer, _killed, nil] call _x;
- 				} forEach GR_EH_CIVDEATH;
-			};
-		};
-	} else { // not a civilian
-		// Generate an age for soldiers (18-50)
-		_vicAge = round random [18,30,50];
-		_killed setVariable ["AGE",_vicAge];
-	};
-}] call CBA_fnc_addClassEventHandler;
+["CAManBase", "killed",GR_fnc_onUnitKilled] call CBA_fnc_addClassEventHandler;
 	
 // Remove GR tasks from a player's responsibility 10 min after disconnect
 addMissionEventHandler ["HandleDisconnect", {
