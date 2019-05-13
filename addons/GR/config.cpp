@@ -21,7 +21,8 @@ class CfgFunctions
 			class initClient      	  				{ postInit = 1; }; 
 			class initServer          				{ postInit = 1; };
 			class onUnitKilled						{};
-			class onZeusCivPlaced					{};			
+			class onLocalCivKilled					{};
+			class onClientCivKilled					{};			
 			class makeMissionDeliverBody			{};
 			class burybody							{};
 			class exhumebody						{};
@@ -35,4 +36,12 @@ class CfgFunctions
 			class MPhint							{};
     	};
 	};
+};
+
+class Extended_Killed_EventHandlers {
+    class CAManBase {
+        class GR_CAManBase_Init {
+            killed = "if(!isServer) then { [_this select 0, _this select 1] call GR_fnc_onLocalCivKilled; }";
+        };
+    };
 };

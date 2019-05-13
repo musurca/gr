@@ -14,24 +14,6 @@ if (isNil "GR_DEATHNOTIFY_STYLE") then {
 	GR_DEATHNOTIFY_STYLE=GR_NOTIFY_HINT;
 };
 
-// If made Zeus after connecting to a dedicated server,
-// transfer ownership of civilian units to the server
-if (!isServer) then {
-	[] spawn {
-		waitUntil {!isNull (getAssignedCuratorLogic player)};
-		(getAssignedCuratorLogic player) addEventHandler ["CuratorObjectPlaced", {
-			params["_curator", "_entity"];
-			if ((side group _entity) == civilian) then {
-				{
-					if(_x isKindOf "CAManBase") then {	
-						[_x, name _x] remoteExecCall ["GR_fnc_onZeusCivPlaced",2];
-					};
-				} forEach units (group _entity);
-			};
-		}];
-	};
-};
-
 // new ACE actions for body bags and graves
 GR_ace_burialAction = ["actionBury","Bury","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'

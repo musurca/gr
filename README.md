@@ -76,6 +76,9 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
+v1.22 (May 13, 2019):
+* bugfix: now supports Antistasi (as well as other mods/game types where civilians are created on the client-side)
+
 v1.21 (May 11, 2019):
 * bugfix: death of Zeus-placed civilians now registered on dedicated servers
 
