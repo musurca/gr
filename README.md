@@ -6,7 +6,7 @@ Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github
 **Features:**
 * When a player kills a civilian, a new task is generated requiring the player to deliver the body to a member of their family, who lives in a house in the AO (within 20km by default).
 * Alternatively, players may attempt to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
-* Civilian casualties are announced to everyone on the same side and marked on the map.
+* Dead civilians are announced to everyone on the same side and marked on the map.
 * Any corpse in a body bag can now be buried or exhumed (requires an Entrenching Tool).
 * Burying any corpse produces a burial mound from which the dead person’s name and age can be read.
 * The items carried by the dead are transferred to the body bag, and persist through burial and exhumation.
@@ -78,7 +78,7 @@ CHANGELOG:
 ---------------------
 
 v1.23 (May 13, 2019):
-* civilian casualties now marked on your map (but can be disabled from CBA settings)
+* civilian dead now marked on your map (but can be disabled from CBA settings)
 * more reliable performance under heavy CPU load / adverse network conditions
 
 v1.22 (May 13, 2019):
