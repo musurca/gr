@@ -35,12 +35,26 @@ GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 // trace ID of corpse
 ["ace_placedInBodyBag", {
 	params["_target","_bodybag"];
+	if(!isServer) exitWith{};
+	
+	_corpseId = _target getVariable "CORPSE_ID";
+	_bodyTask = _target getVariable ["GR_HIDEBODY_TASK",""];
+	if(_bodyTask != "") then {
+		// Tell everyone on side that the body has been bagged
+		_taskInfo = [GR_TASK_OWNERS,_bodyTask] call CBA_fnc_hashGet;
+		_taskSide = _taskInfo select 1;
+		[_corpseId] remoteExec ["GR_fnc_localBodyBagged",_taskSide];
+	} else
+	{
+		// Just tell everyone because we're not sure who shot him
+		[_corpseId] remoteExec ["GR_fnc_localBodyBagged"];
+	};
 	
 	// Set up GR variables
-	_bodybag setVariable ["CORPSE_ID",_target call BIS_fnc_netId];
+	_bodybag setVariable ["CORPSE_ID",_corpseId];
 	_bodybag setVariable ["AGE",_target getVariable ["AGE",0],true]; // only broadcast AGE to clients when in the bodybag
 	_bodybag setVariable ["GR_NEXTOFKIN",_target getVariable ["GR_NEXTOFKIN",objNull]];
-	_bodybag setVariable ["GR_HIDEBODY_TASK",_target getVariable ["GR_HIDEBODY_TASK",""]];
+	_bodybag setVariable ["GR_HIDEBODY_TASK",_bodyTask];
 	
 	// Transfer inventory
 	_weaps = weapons _target;
@@ -55,7 +69,7 @@ GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 	
 	_cargo = "Supply500" createVehicle [0,0,0];
 	_cargo attachTo [_bodybag, [0,0,0.85]];
-	_bodybag setVariable ["GR_CARGO",_cargo call BIS_fnc_netId];
+	_bodybag setVariable ["GR_CARGO",_cargo];
 	
 	[_cargo,_items,_weaps,_mags] spawn {
 		params["_cargo","_items","_weaps","_mags"];
@@ -66,6 +80,7 @@ GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 	};
 }] call CBA_fnc_addEventHandler;
 
+// Add event handler for people killed on server
 ["CAManBase", "killed",GR_fnc_onUnitKilled] call CBA_fnc_addClassEventHandler;
 	
 // Remove GR tasks from a player's responsibility 10 min after disconnect

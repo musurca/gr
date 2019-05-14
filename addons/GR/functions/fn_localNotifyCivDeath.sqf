@@ -1,6 +1,6 @@
 /*
 
- fn_MPhint.sqf
+ fn_localNotifyCivDeath.sqf
  by @musurca
  
  Function for printing text notifications from server. Depends on player/mission/server-determined notification style.
@@ -8,7 +8,7 @@
 
 */
 
-params["_killerName","_killedName","_killedAge"];
+params["_killerName","_killedName","_killedAge", "_killedPos", "_killedId"];
 
 switch (GR_DEATHNOTIFY_STYLE) do {
 	case GR_NOTIFY_HINT: { 
@@ -20,6 +20,14 @@ switch (GR_DEATHNOTIFY_STYLE) do {
 		_text = format ["%1 has killed a civilian. (%2, age %3)",_killerName, _killedName, _killedAge];
 		[side player, "HQ"] sideChat _text 
 	};
+};
+
+if (GR_DEATHNOTIFY_MARKER) then {
+	_marker = createMarkerLocal [format["GRmrk_%1",_killedId],_killedPos];
+	_marker setMarkerShapeLocal "ICON";
+	_marker setMarkerTypeLocal "mil_dot";
+	_marker setMarkerColorLocal "ColorYellow";
+	_marker setMarkerAlphaLocal 0.5;
 };
 
 // Make diary record of killing

@@ -31,11 +31,7 @@ if ((count _dogtagData) == 0) then {
 	[_player, _target] call ace_dogtags_fnc_takeDogtag;
 };
 
-_cargo = objNull;
-_cargoId = _target getVariable ["GR_CARGO",0];
-if (!(_cargoId isEqualTo 0)) then {
-	_cargo = _cargoId call BIS_fnc_objectFromNetId;
-};
+_cargo = _target getVariable ["GR_CARGO",objNull];
 if (!(_cargo isEqualTo objNull)) then {
 	detach _cargo;
 	_cargo setPos [0,0,0];
@@ -49,9 +45,7 @@ _grave setPos _posTarget;
 _grave setVariable ["CORPSE_ID", _cId];
 _grave setVariable ["DOGTAG_DATA", _dogtagData, true];
 _grave setVariable ["AGE",_vicAge, true];
-if(!(_cargoId isEqualTo 0)) then {
-	_grave setVariable ["GR_CARGO",_cargoId];
-};
+_grave setVariable ["GR_CARGO",_cargo];
 if (_task != "") then {
 	_grave setVariable ["GR_HIDEBODY_TASK",_task];
 	_grave setVariable ["GR_NEXTOFKIN",_nextOfKin];

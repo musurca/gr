@@ -13,6 +13,9 @@ if(!hasInterface) exitWith{};
 if (isNil "GR_DEATHNOTIFY_STYLE") then { 
 	GR_DEATHNOTIFY_STYLE=GR_NOTIFY_HINT;
 };
+if (isNil "GR_DEATHNOTIFY_MARKER") then { 
+	GR_DEATHNOTIFY_MARKER=true;
+};
 
 // new ACE actions for body bags and graves
 GR_ace_burialAction = ["actionBury","Bury","",{

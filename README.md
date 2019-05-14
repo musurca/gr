@@ -6,6 +6,7 @@ Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github
 **Features:**
 * When a player kills a civilian, a new task is generated requiring the player to deliver the body to a member of their family, who lives in a house in the AO (within 20km by default).
 * Alternatively, players may attempt to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
+* Civilian casualties are announced to everyone on the same side and marked on the map.
 * Any corpse in a body bag can now be buried or exhumed (requires an Entrenching Tool).
 * Burying any corpse produces a burial mound from which the dead person’s name and age can be read.
 * The items carried by the dead are transferred to the body bag, and persist through burial and exhumation.
@@ -21,7 +22,7 @@ In order to deliver a dead civilian to their family member, you must first place
 
 You can also bury or exhume any body bags if you are carrying an Entrenching Tool.
 
-You can change how your notifications for civilian casualties are displayed in your Addon Settings (listed under "Guilt & Remembrance."). Note that this setting may be overriden by the mission creator or server operator.
+You can change how your notifications for civilian casualties are displayed in your Addon Options (listed under "Guilt & Remembrance."). Note that this setting may be overriden by the mission creator or server operator.
 
 **FOR MISSION CREATORS & SERVER OPERATORS:**
 This mod is fully signed for multiplayer use, and has been tested on both local and dedicated servers. It must be run on both the client and server. 
@@ -75,6 +76,10 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 
 CHANGELOG:
 ---------------------
+
+v1.23 (May 13, 2019):
+* civilian casualties now marked on your map (but can be disabled from CBA settings)
+* more reliable performance under heavy CPU load / adverse network conditions
 
 v1.22 (May 13, 2019):
 * bugfix: now supports Antistasi (as well as other mods/game types where civilians are created on the client-side)

@@ -9,15 +9,17 @@
 
 params ["_killed", ["_killer", objNull]];
 
-if ((isNull _killer) || {_killer == _killed}) then {
-	_killer = _killed getVariable ["ace_medical_lastDamageSource", objNull];
-};
-	
-// See if it's a vehicle
-if ((!isNull _killer) && {!(_killer isKindof "CAManBase")}) then {
-	_killer = effectiveCommander _killer;
-};
-
 if(side (group _killed) == civilian) then {
+	// Workaround for ACE medical	
+	if ((isNull _killer) || {_killer == _killed}) then {
+		_killer = _killed getVariable ["ace_medical_lastDamageSource", objNull];
+	};
+	
+	// Civilian killed by vehicle?
+	if ((!isNull _killer) && {!(_killer isKindof "CAManBase")}) then {
+		_killer = effectiveCommander _killer;
+	};
+
+	// Tell the server about killing and start transfer of ownership
 	[_killed, _killer, name _killed] remoteExecCall ["GR_fnc_onClientCivKilled",2];
 };

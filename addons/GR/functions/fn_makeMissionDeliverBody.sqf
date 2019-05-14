@@ -42,15 +42,13 @@ if (count _bposlist == 0) exitWith { // no place for kin to spawn
 _spawnPos = (selectRandom _bposlist);
 
 _nextOfKinGrp = createGroup civilian;
-_nextOfKinGrp = [_spawnPos, civilian, [selectRandom GR_CIV_TYPES]] call BIS_fnc_spawnGroup;
-sleep 2;
-_nextOfKin = (units _nextOfKinGrp) select 0;
+_nextOfKin = _nextOfKinGrp createUnit [selectRandom GR_CIV_TYPES, _spawnPos, [],0, "NONE"];
 _nextOfKin setPosATL _spawnPos;
 _nextOfKin setUnitPos "up";
 _nextOfKin allowFleeing 0;
 doStop _nextOfKin;
 
-_bigTask = format ["CivDead%1",_nextOfKin call BIS_fnc_netId];
+_bigTask = format ["GRtsk_%1",_nextOfKin call BIS_fnc_netId];
 [side _killer,_bigTask,[format ["Deliver the body of %1 to his nearest relative.",name _killed],"Deal with Civilian Death","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
 
 _nextOfKin setVariable ["GR_DELIVERBODY_TASK",_bigTask];
@@ -115,13 +113,14 @@ _deathArray pushBack _nextOfKin;
 		if( ({_x distance _kin <= 20} count allPlayers) > 0 ) then {
 			_objs = _kin nearObjects ["ACE_bodyBagObject", 5];
 			if (count _objs > 0) then {
-				_cId = _kin getVariable ["GR_CORPSE_ID",0];
+				_cId = _kin getVariable ["GR_CORPSE_ID","0:0"];
+				_bodyFound=false;
 				_body = objNull;
 				{ 
-					if ((_x getVariable ["CORPSE_ID",0]) == _cId) exitWith { _body = _x};
+					if ((_x getVariable ["CORPSE_ID","-1:-1"]) == _cId) exitWith { _body = _x; _bodyFound=true };
 				} forEach _objs;
 
-				if (_body != objNull) then {
+				if (_bodyFound) then {
 					_kin lookAt _body;
 
 					[_task,"Succeeded",false] call BIS_fnc_taskSetState;

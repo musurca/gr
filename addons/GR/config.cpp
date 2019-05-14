@@ -22,7 +22,7 @@ class CfgFunctions
 			class initServer          				{ postInit = 1; };
 			class onUnitKilled						{};
 			class onLocalCivKilled					{};
-			class onClientCivKilled					{};			
+			class onClientCivKilled					{};	
 			class makeMissionDeliverBody			{};
 			class burybody							{};
 			class exhumebody						{};
@@ -33,7 +33,8 @@ class CfgFunctions
 			class removeConcealDeathEventHandler	{};
 			class addDeliverBodyEventHandler		{};
 			class removeDeliverBodyEventHandler		{};
-			class MPhint							{};
+			class localNotifyCivDeath				{};
+			class localBodyBagged					{};
     	};
 	};
 };
