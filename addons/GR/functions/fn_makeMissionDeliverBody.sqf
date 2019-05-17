@@ -136,8 +136,14 @@ _deathArray pushBack _nextOfKin;
 						
 					// Remove failure upon death event
 					_kin removeEventHandler ["Killed", _handle];
-						
-					_killer = allPlayers select {(getPlayerUID _x) == _playerUID};
+					
+					// Try to find the player who originally killed this civilian
+					_killerTry = allPlayers select {(getPlayerUID _x) == _playerUID};
+					if(count _killerTry > 0) then {
+						_killer = _killerTry select 0;
+					} else {
+						_killer = objNull;
+					};
 					_kin setVariable ["GR_WILLDELETE",true];
 					_body setVariable ["GR_WILLDELETE",true];
 					// Call custom events upon delivery of body
@@ -156,7 +162,7 @@ _deathArray pushBack _nextOfKin;
 						};
 			
 						if ( _body getVariable ["GR_WILLDELETE",false] ) then {
-							_cargo = (_body getVariable ["GR_CARGO"]) call BIS_fnc_objectFromNetId;
+							_cargo = _body getVariable ["GR_CARGO",objNull];
 							if (_cargo != objNull) then {
 								deleteVehicle _cargo;
 							};
