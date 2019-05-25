@@ -27,7 +27,7 @@ In order to deliver a dead civilian to their family member, you must first place
 
 (Note: while the task to deliver the body is created immediately after you have killed the civilian, you will not be notified for 20-60 seconds so as not to distract you if you happen to be in the middle of combat.)
 
-You can also bury or exhume any body bags if you are carrying an Entrenching Tool. Autopsies can be performed if you carrying a Surgical Kit.
+You can also bury or exhume any body bags if you are carrying an Entrenching Tool. Autopsies can be performed if you are carrying a Surgical Kit.
 
 You can change how your notifications for civilian casualties are displayed in your Addon Options (listed under "Guilt & Remembrance."). Note that this setting may be overriden by the mission creator or server operator.
 
