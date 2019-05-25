@@ -20,7 +20,7 @@ _Autopsies_
 * When performed near a medical facility, an autopsy can also determine the time of death, the faction of the killer — and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
 
 _Customization_
-* Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
+* Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, death concealment, or reveal of the identity of an unknown victim via autopsy.
 
 **FOR PLAYERS:**
 In order to deliver a dead civilian to their family member, you must first place it in a Body Bag via an ACE action (Interactions -> Place body in body bag). The Body Bag can then be loaded into the cargo of a vehicle, driven to the destination, unloaded, and then manually dragged to the relative.
