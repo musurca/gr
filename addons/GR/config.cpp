@@ -34,6 +34,8 @@ class CfgFunctions
 			class removeConcealDeathEventHandler	{};
 			class addDeliverBodyEventHandler		{};
 			class removeDeliverBodyEventHandler		{};
+			class addRevealDeathEventHandler		{};
+			class removeRevealDeathEventHandler		{};
 			class localNotifyCivDeath				{};
 			class localBodyBagged					{};
 			class localNotifyAutopsy				{};

@@ -83,6 +83,11 @@ if(_medicF) then {
 		_causeMsg = _causeMsg + "<br/><br/>IDENTITY: Dental records indicate that the patient may be " + format ["%1, a %2-year-old male. His family has been notified.",_actualName,_patientAge];
 	
 		[_player, _target, _actualName] call GR_fnc_makeMissionDeliverBody;
+		
+		// Call custom event handler on reveal of concealed identity
+		{
+			[_player, _target, _killerSide] call _x;
+		} forEach GR_EH_REVEALDEATH;
 	};
 } else {
 	_causeMsg = _causeMsg + "<br/><br/>To learn more, you would need to perform this autopsy closer to a medical facility.";

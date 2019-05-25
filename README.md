@@ -4,6 +4,7 @@ Mod for handling civilian deaths, reparations, and war crimes in Arma 3. Atone f
 Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
 
 **FEATURES:**
+
 _Civilian Deaths_
 * When a player kills a civilian, a new task is generated requiring the player to deliver the body to a member of their family, who lives in a house in the AO (within 20km by default).
 * Alternatively, players may attempt to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
@@ -18,7 +19,7 @@ _Autopsies_
 * Medics can perform an autopsy on any body in the field to determine cause of death (requires Surgical Kit).
 * When performed near a medical facility, an autopsy can also determine the time of death, the faction of the killer--and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
 
-** Customization **
+_Customization_
 * Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
 
 **FOR PLAYERS:**
@@ -71,6 +72,10 @@ GR_FACTIONNAME_IND = "the Syndikat";
 [yourCustomEvent_OnConcealDeath] call GR_fnc_addConcealDeathEventHandler; // args [_killer, _nextofkin, _grave]
 [yourCustomEvent_OnConcealDeath] call GR_fnc_removeConcealDeathEventHandler;
 
+// On reveal of a concealed death via autopsy:
+[yourCustomEvent_OnRevealDeath] call GR_fnc_addRevealDeathEventHandler; // args [_medic, _body, _killerSide]
+[yourCustomEvent_OnRevealDeath] call GR_fnc_removeRevealDeathEventHandler;
+
 // NOTE: if your event handler uses _nextofkin or _body, make sure to turn off garbage collection with:
 // _nextofkin setVariable ["GR_WILLDELETE",false];
 // _body setVariable ["GR_WILLDELETE",false];
@@ -90,6 +95,7 @@ CHANGELOG:
 
 v.1.3 (May 25, 2019):
 * added: Autopsies
+* added: autopsy event handler if concealed death is revealed
 * added: CBA setting to automatically add bodybag to dead civilian inventory (e.g. for missions where getting a bodybag is difficult, like Antistasi)
 * bugfix: next-of-kin garbage collection
 
