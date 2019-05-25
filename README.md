@@ -17,7 +17,7 @@ _Burial and Exhumation_
 
 _Autopsies_
 * Medics can perform an autopsy on any body in the field to determine cause of death (requires Surgical Kit).
-* When performed near a medical facility, an autopsy can also determine the time of death, the faction of the killer--and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
+* When performed near a medical facility, an autopsy can also determine the time of death, the faction of the killer — and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
 
 _Customization_
 * Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
@@ -93,7 +93,7 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
-v.1.3 (May 25, 2019):
+v1.3 (May 25, 2019):
 * added: Autopsies
 * added: autopsy event handler if concealed death is revealed
 * added: CBA setting to automatically add bodybag to dead civilian inventory (e.g. for missions where getting a bodybag is difficult, like Antistasi)
