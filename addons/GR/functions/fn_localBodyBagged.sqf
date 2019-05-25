@@ -9,4 +9,8 @@
 
 params["_corpseId"];
 
-deleteMarkerLocal format["GRmrk_%1",_corpseId];
+try {
+	deleteMarkerLocal format["GRmrk_%1",_corpseId];
+} catch { 
+	// no marker to delete
+};

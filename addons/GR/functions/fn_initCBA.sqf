@@ -33,3 +33,19 @@ GR_NOTIFY_HINT=2;
 	"Guilt & Remembrance",
 	true
 ] call CBA_fnc_AddSetting;
+
+[
+    "GR_AUTOPSY_MEDICREQ",
+    "CHECKBOX",
+	"Only medics can perform autopsies",
+	"Guilt & Remembrance",
+	false
+] call CBA_fnc_AddSetting;
+
+[
+    "GR_ONKILL_ADDBODYBAG",
+    "CHECKBOX",
+	"Add bodybag to dead civilian's inventory",
+	"Guilt & Remembrance",
+	false
+] call CBA_fnc_AddSetting;

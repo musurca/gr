@@ -24,6 +24,9 @@ _nextOfKin = _target getVariable ["GR_NEXTOFKIN",objNull];
 if (_vicAge == 0) then {
 	_vicAge = round random [18, 28, 47];
 };
+_timeOfDeath = _target getVariable ["GR_TIMEOFDEATH",[]];
+_killerSide = _target getVariable ["GR_KILLERSIDE",CIVILIAN];
+_causeOfDeath = _target getVariable ["GR_DEATHCAUSE",GR_COD_UNKNOWN];	
 
 _dogtagData = _target getVariable ["DOGTAG_DATA",[]];
 if ((count _dogtagData) == 0) then {
@@ -46,6 +49,9 @@ _grave setVariable ["CORPSE_ID", _cId];
 _grave setVariable ["DOGTAG_DATA", _dogtagData, true];
 _grave setVariable ["AGE",_vicAge, true];
 _grave setVariable ["GR_CARGO",_cargo];
+_grave setVariable ["GR_TIMEOFDEATH",_timeOfDeath];
+_grave setVariable ["GR_KILLERSIDE",_killerSide];
+_grave setVariable ["GR_DEATHCAUSE",_causeOfDeath];
 if (_task != "") then {
 	_grave setVariable ["GR_HIDEBODY_TASK",_task];
 	_grave setVariable ["GR_NEXTOFKIN",_nextOfKin];

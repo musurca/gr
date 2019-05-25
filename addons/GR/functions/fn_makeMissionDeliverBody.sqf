@@ -7,7 +7,11 @@
  Handles both mission success and the untimely death of the next-of-kin.
 
 */
-params["_killer", "_killed"];
+params["_killer", "_killed","_nameKilled"];
+
+if(isNil "_nameKilled") then {
+	_nameKilled = name _killed;
+};
 	
 _corpseId = _killed call BIS_fnc_netId;
 if (isInRemainsCollector _killed) then {
@@ -49,7 +53,7 @@ _nextOfKin allowFleeing 0;
 doStop _nextOfKin;
 
 _bigTask = format ["GRtsk_%1",_nextOfKin call BIS_fnc_netId];
-[side _killer,_bigTask,[format ["Deliver the body of %1 to his nearest relative.",name _killed],"Deal with Civilian Death","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
+[side _killer,_bigTask,[format ["Deliver the body of %1 to his nearest relative.",_nameKilled],"Deal with Civilian Death","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
 
 _nextOfKin setVariable ["GR_DELIVERBODY_TASK",_bigTask];
 _nextOfKin setVariable ["GR_CORPSE_ID",_corpseId];

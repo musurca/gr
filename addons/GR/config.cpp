@@ -27,6 +27,7 @@ class CfgFunctions
 			class burybody							{};
 			class exhumebody						{};
 			class vandalizegrave            		{};
+			class doautopsy							{};
 			class addCivDeathEventHandler			{};
 			class removeCivDeathEventHandler		{};
 			class addConcealDeathEventHandler		{};
@@ -35,6 +36,7 @@ class CfgFunctions
 			class removeDeliverBodyEventHandler		{};
 			class localNotifyCivDeath				{};
 			class localBodyBagged					{};
+			class localNotifyAutopsy				{};
     	};
 	};
 };

@@ -28,16 +28,46 @@ if (isNil "GR_TASK_MID_DELAY") then {
 if (isNil "GR_TASK_MAX_DELAY") then {
 	GR_TASK_MAX_DELAY=60;
 };
+if (isNil "GR_FACTIONNAME_EAST") then {
+	GR_FACTIONNAME_EAST = "CSAT";
+};
+if (isNil "GR_FACTIONNAME_WEST") then {
+	GR_FACTIONNAME_WEST = "NATO";
+};
+if (isNil "GR_FACTIONNAME_IND") then {
+	GR_FACTIONNAME_IND = "the Syndikat";
+};
+// Only if CBA fails for some reason
+if (isNil "GR_ONKILL_ADDBODYBAG") then {
+	GR_ONKILL_ADDBODYBAG = false;
+};
 
 GR_TASK_OWNERS = [] call CBA_fnc_hashCreate;
 GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
+
+// Causes of death
+GR_COD_UNKNOWN=0;
+GR_COD_BULLET=1;
+GR_COD_VEHICLE=2;
+GR_COD_GRENADE=3;
+GR_COD_EXPLOSION=4;
+GR_COD_SHELL=5;
+GR_COD_CAUSES = [GR_COD_BULLET,GR_COD_GRENADE,GR_COD_GRENADE,GR_COD_EXPLOSION,GR_COD_EXPLOSION,GR_COD_EXPLOSION,GR_COD_SHELL];
+GR_COD_MSGS = [
+"You are unable to determine a cause of death.",
+"The patient was killed by gunshot wounds.",
+"The patient was killed by blunt-force trauma, likely due to collision with a vehicle.",
+"The patient exhibits shrapnel and fragmentation wounds, consistent with a grenade explosion.",
+"The patient exhibits blast and fragmentation wounds, consistent with an explosion.",
+"The patient exhibits broken bones and partial amputations, consistent with a massive explosion."
+];
 
 // trace ID of corpse
 ["ace_placedInBodyBag", {
 	params["_target","_bodybag"];
 	if(!isServer) exitWith{};
 	
-	_corpseId = _target getVariable "CORPSE_ID";
+	_corpseId = _target getVariable ["CORPSE_ID",0];
 	_bodyTask = _target getVariable ["GR_HIDEBODY_TASK",""];
 	if(_bodyTask != "") then {
 		// Tell everyone on side that the body has been bagged
@@ -49,12 +79,18 @@ GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 		// Just tell everyone because we're not sure who shot him
 		[_corpseId] remoteExec ["GR_fnc_localBodyBagged"];
 	};
+	_timeOfDeath = _target getVariable ["GR_TIMEOFDEATH",[]];
+	_killerSide = _target getVariable ["GR_KILLERSIDE",CIVILIAN];
+	_causeOfDeath = _target getVariable ["GR_DEATHCAUSE",GR_COD_UNKNOWN];
 	
 	// Set up GR variables
 	_bodybag setVariable ["CORPSE_ID",_corpseId];
 	_bodybag setVariable ["AGE",_target getVariable ["AGE",0],true]; // only broadcast AGE to clients when in the bodybag
 	_bodybag setVariable ["GR_NEXTOFKIN",_target getVariable ["GR_NEXTOFKIN",objNull]];
 	_bodybag setVariable ["GR_HIDEBODY_TASK",_bodyTask];
+	_bodybag setVariable ["GR_TIMEOFDEATH",_timeOfDeath];
+	_bodybag setVariable ["GR_KILLERSIDE",_killerSide];
+	_bodybag setVariable ["GR_DEATHCAUSE",_causeOfDeath];
 	
 	// Transfer inventory
 	_weaps = weapons _target;
@@ -82,7 +118,7 @@ GR_PLAYER_TASKS = [[],[]] call CBA_fnc_hashCreate;
 
 // Add event handler for people killed on server
 ["CAManBase", "killed",GR_fnc_onUnitKilled] call CBA_fnc_addClassEventHandler;
-	
+
 // Remove GR tasks from a player's responsibility 10 min after disconnect
 addMissionEventHandler ["HandleDisconnect", {
 	params ["_unit", "_id", "_uid", "_name"];

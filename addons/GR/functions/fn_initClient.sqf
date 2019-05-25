@@ -16,8 +16,29 @@ if (isNil "GR_DEATHNOTIFY_STYLE") then {
 if (isNil "GR_DEATHNOTIFY_MARKER") then { 
 	GR_DEATHNOTIFY_MARKER=true;
 };
+if (isNil "GR_AUTOPSY_MEDICREQ") then {
+	GR_AUTOPSY_MEDICREQ=false;
+};
 
 // new ACE actions for body bags and graves
+GR_ace_autopsyAction = ["actionAutopsy","Perform autopsy","",{
+	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
+	[
+		8,
+		_target,
+		{ // success
+			params["_target"];
+			player switchMove "";
+			[_target,player] remoteExecCall ["GR_fnc_doautopsy",2];
+		},
+		{ // interruption
+			player switchMove "";
+		},
+		"Performing autopsy..."
+	] call ace_common_fnc_progressBar;
+}, {("ACE_surgicalKit" in (items _player)) && ( !GR_AUTOPSY_MEDICREQ || (_player getUnitTrait "Medic") ) }] call ace_interact_menu_fnc_createAction;
+["ACE_bodyBagObject",0,["ACE_MainActions"],GR_ace_autopsyAction] call ace_interact_menu_fnc_addActionToClass;
+
 GR_ace_burialAction = ["actionBury","Bury","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
 	[
@@ -87,7 +108,7 @@ GR_ace_readEpitaphAction = ["actionEpitaph","Read marker","",{
 		if (_name != "Unknown") then {
 			hintSilent parseText (format ["<t align='center'>%1<br/>Born %2  Died %3</t>",toUpper _name,_yearBorn,_yearDied]);
 		} else {
-			hintSilent parseText (format ["<t align='center'>UNKNOWN<br/>Died %1</t>",_yearDied]);
+			hintSilent parseText ("<t align='center'>UNKNOWN</t>");
 		};
 	} else {
 		hintSilent "Someone has scratched out the name on this grave."; 

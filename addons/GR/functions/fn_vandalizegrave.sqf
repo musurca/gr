@@ -14,7 +14,18 @@ if(!isServer) exitWith {};
 params ["_target"];
 //TODO: play sound?	
 _target setVariable ["IS_LEGIBLE",false,true];
-_target setVariable ["DOGTAG_DATA",["Unknown","",""],true];
+_name = (_target getVariable ["DOGTAG_DATA",["Unknown","",""]]) select 0;
+_firstName = "John";
+_lastName = "Doe";
+if (_name != "Unknown") then {
+	_nameToks = _name splitString " ";
+	_firstName = _nameToks select 0;
+	if (count _nameToks > 1) then {
+		_lastName = _nameToks select 1;
+	};
+};
+// Hide name, recoverable by autopsy at medical facility
+_target setVariable ["DOGTAG_DATA",["Unknown",_firstName,_lastName],true];
 
 _task = _target getVariable ["GR_HIDEBODY_TASK",""];
 if (_task != "") then {

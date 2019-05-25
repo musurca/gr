@@ -3,24 +3,30 @@ Mod for handling civilian deaths, reparations, and war crimes in Arma 3. Atone f
 
 Requirements: [CBA_A3](https://github.com/CBATeam/CBA_A3), [ACE3](https://github.com/acemod/ACE3)
 
-**Features:**
+**FEATURES:**
+_Civilian Deaths_
 * When a player kills a civilian, a new task is generated requiring the player to deliver the body to a member of their family, who lives in a house in the AO (within 20km by default).
 * Alternatively, players may attempt to conceal the death by taking the body at least 300m away from a populated center, burying it, and striking off the dead civilian’s name from the grave marker.
 * Dead civilians are announced to everyone on the same side and marked on the map.
+
+_Burial and Exhumation_
 * Any corpse in a body bag can now be buried or exhumed (requires an Entrenching Tool).
 * Burying any corpse produces a burial mound from which the dead person’s name and age can be read.
 * The items carried by the dead are transferred to the body bag, and persist through burial and exhumation.
-* Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
 
-**Planned features to come:**
-* Medics will be able to perform an autopsy to determine cause of death and probable faction of killer (when near medical facility).
+_Autopsies_
+* Medics can perform an autopsy on any body in the field to determine cause of death (requires Surgical Kit).
+* When performed near a medical facility, an autopsy can also determine the time of death, the faction of the killer--and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
+
+** Customization **
+* Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, or death concealment.
 
 **FOR PLAYERS:**
 In order to deliver a dead civilian to their family member, you must first place it in a Body Bag via an ACE action (Interactions -> Place body in body bag). The Body Bag can then be loaded into the cargo of a vehicle, driven to the destination, unloaded, and then manually dragged to the relative.
 
 (Note: while the task to deliver the body is created immediately after you have killed the civilian, you will not be notified for 20-60 seconds so as not to distract you if you happen to be in the middle of combat.)
 
-You can also bury or exhume any body bags if you are carrying an Entrenching Tool.
+You can also bury or exhume any body bags if you are carrying an Entrenching Tool. Autopsies can be performed if you carrying a Surgical Kit.
 
 You can change how your notifications for civilian casualties are displayed in your Addon Options (listed under "Guilt & Remembrance."). Note that this setting may be overriden by the mission creator or server operator.
 
@@ -43,6 +49,11 @@ GR_MISSION_CHANCE = 100;
 GR_TASK_MIN_DELAY=20;
 GR_TASK_MID_DELAY=40;
 GR_TASK_MAX_DELAY=60;
+
+// Set custom faction names to determine blame when performing an autopsy
+GR_FACTIONNAME_EAST = "CSAT";
+GR_FACTIONNAME_WEST = "NATO";
+GR_FACTIONNAME_IND = "the Syndikat";
 
 // You can also add/remove custom event handlers to be called upon
 // certain events.
@@ -76,6 +87,11 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 
 CHANGELOG:
 ---------------------
+
+v.1.3 (May 25, 2019):
+* added: Autopsies
+* added: CBA setting to automatically add bodybag to dead civilian inventory (e.g. for missions where getting a bodybag is difficult, like Antistasi)
+* bugfix: next-of-kin garbage collection
 
 v1.23 (May 13, 2019):
 * civilian dead now marked on your map (but can be disabled from CBA settings)

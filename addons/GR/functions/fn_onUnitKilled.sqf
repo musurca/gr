@@ -20,6 +20,56 @@ if ((!isNull _killer) && {!(_killer isKindof "CAManBase")}) then {
 	_killer = effectiveCommander _killer;
 };
 
+// Store information about death for autopsy.
+_killed setVariable ["GR_TIMEOFDEATH",date];
+_killed setVariable ["GR_KILLERSIDE",side _killer];
+// cause of death not updated immediately, so a delay is required
+[_killed] spawn {
+	params ["_killed"];
+	private ["_deathCause"];
+	sleep 1;
+	// extract cause of death from ACE Medical
+	_wounds = _killed getVariable ["ace_medical_openWounds",[]];
+	if(count _wounds > 0) then {
+		_type = 1;
+		_severity = 0;
+		_rank = 0;
+		{
+			_xType = _x select 0;
+			_xSeverity = _x select 1;
+			_xRank = _x select 4;
+			if (_xRank >= _rank) then {
+				_rank = _xRank;
+				if(_xType > _type) then {
+					_type = _xType;
+				};
+				if (_xSeverity > _severity) then {
+					_severity = _xSeverity;
+				};
+			};
+		} forEach _wounds;
+		_type = floor _type;
+		if(_type == 1) then {
+			if (_severity >= 15) then {
+				_deathCause = GR_COD_BULLET;
+			} else {
+				_deathCause = GR_COD_VEHICLE;
+			};
+		} else {
+			_type = _type-1;
+			if(_type < (count GR_COD_CAUSES)) then {
+				_deathCause = GR_COD_CAUSES select _type;
+			} else {
+				_deathCause = GR_COD_SHELL;
+			};
+		};
+	};
+	if (isNil "_deathCause") then {
+		_deathCause = GR_COD_UNKNOWN;
+	};
+	_killed setVariable ["GR_DEATHCAUSE", _deathCause];
+};
+
 if ((side group _killed) == civilian) then {
 	_vicAge = round random [15,40,79];
 	_killed setVariable ["AGE",_vicAge];
@@ -32,6 +82,10 @@ if ((side group _killed) == civilian) then {
 
 	// Players get an "apology" mission
 	if (isPlayer _killer) then {
+		if(GR_ONKILL_ADDBODYBAG) then {
+			_killed addItem "ACE_bodyBag";
+		};
+	
 		if( (random 100) < GR_MISSION_CHANCE ) then {
 			[_killer, _killed] call GR_fnc_makeMissionDeliverBody;
 		} else {
