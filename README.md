@@ -93,6 +93,9 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
+v1.31 (January 11, 2020):
+* bugfix: two events created on civilian death (related to ACE3 Medical update)
+
 v1.3 (May 25, 2019):
 * added: Autopsies
 * added: autopsy event handler if concealed death is revealed

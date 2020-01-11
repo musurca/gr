@@ -12,4 +12,4 @@ overview = "Civilian deaths, reparations, and war crimes. Deliver the bodies of 
 author = "@musurca";
 overviewText = "GR";
 overviewPicture = "img\logomain.paa";
-overviewFootnote = "v130";
+overviewFootnote = "v131";

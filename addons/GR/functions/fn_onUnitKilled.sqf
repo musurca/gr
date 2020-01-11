@@ -11,6 +11,10 @@ if (!isServer) exitWith {};
 
 params ["_killed", ["_killer", objNull]];
 
+//Workaround for ACE3 Medical bug in which "killed" EH is called twice
+if (_killed getVariable ["GR_WASKILLED",0] == 1) exitWith {};
+_killed setVariable ["GR_WASKILLED",1];
+
 if ((isNull _killer) || {_killer == _killed}) then {
 	_killer = _killed getVariable ["ace_medical_lastDamageSource", objNull];
 };

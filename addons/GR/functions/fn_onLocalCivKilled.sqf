@@ -9,6 +9,10 @@
 
 params ["_killed", ["_killer", objNull]];
 
+//Workaround for ACE3 Medical bug in which "killed" EH is called twice
+if (_killed getVariable ["GR_WASKILLED",0] == 1) exitWith {};
+_killed setVariable ["GR_WASKILLED",1];
+
 if(side (group _killed) == civilian) then {
 	// Workaround for ACE medical	
 	if ((isNull _killer) || {_killer == _killed}) then {
