@@ -16,8 +16,8 @@ if (isNil "GR_DEATHNOTIFY_STYLE") then {
 if (isNil "GR_DEATHNOTIFY_MARKER") then { 
 	GR_DEATHNOTIFY_MARKER=true;
 };
-if (isNil "GR_AUTOPSY_MEDICREQ") then {
-	GR_AUTOPSY_MEDICREQ=false;
+if (isNil "GR_AUTOPSY_CLASS") then {
+	GR_AUTOPSY_CLASS=2;
 };
 
 // new ACE actions for body bags and graves
