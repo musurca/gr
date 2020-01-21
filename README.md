@@ -17,7 +17,7 @@ _Burial and Exhumation_
 
 _Autopsies_
 * Medics can perform an autopsy on any body in the field to determine cause of death (requires Surgical Kit).
-* When performed near a medical facility, an autopsy can also determine the time of death, the faction of the killer — and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
+* When performed by a Doctor or near a medical facility, an autopsy can also determine the time of death, the faction of the killer — and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
 
 _Customization_
 * Mission creators can attach functions to event handlers to produce custom events upon civilian death, body delivery to next-of-kin, death concealment, or reveal of the identity of an unknown victim via autopsy.
