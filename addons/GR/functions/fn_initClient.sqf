@@ -36,7 +36,7 @@ GR_ace_autopsyAction = ["actionAutopsy","Perform autopsy","",{
 		},
 		"Performing autopsy..."
 	] call ace_common_fnc_progressBar;
-}, {("ACE_surgicalKit" in (items _player)) && ( !GR_AUTOPSY_MEDICREQ || (_player getUnitTrait "Medic") ) }] call ace_interact_menu_fnc_createAction;
+}, {("ACE_surgicalKit" in (items _player)) && (_player getVariable ["ace_medical_medicClass", 0] >= GR_AUTOPSY_CLASS) }] call ace_interact_menu_fnc_createAction;
 ["ACE_bodyBagObject",0,["ACE_MainActions"],GR_ace_autopsyAction] call ace_interact_menu_fnc_addActionToClass;
 
 GR_ace_burialAction = ["actionBury","Bury","",{

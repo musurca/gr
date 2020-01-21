@@ -12,12 +12,16 @@ if(!isServer) exitWith {};
 
 params ["_target","_player"];
 
-// Are we near a medical facility?
+// Are we a doctor or are we near a medical facility?
 _medicF=false;
-_nearObjs = _target nearObjects 15;
-{
-	if(_x getVariable ["ace_medical_medicClass", 0]==1) exitWith { _medicF = true };
-} forEach _nearObjs;
+if(_player getVariable ["ace_medical_medicClass", 0] == 2) then {
+	_medicF=true;
+} else {
+	_nearObjs = _target nearObjects 15;
+	{
+		if(_x getVariable ["ace_medical_isMedicalFacility", false] == true) exitWith { _medicF = true };
+	} forEach _nearObjs;
+};
 
 // Patient name & age
 _dogtagData = _target getVariable ["DOGTAG_DATA",[]];

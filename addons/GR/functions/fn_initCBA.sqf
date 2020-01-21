@@ -19,6 +19,10 @@ GR_NOTIFY_DIARY=0;
 GR_NOTIFY_SIDECHAT=1;
 GR_NOTIFY_HINT=2;
 
+GR_AUTOPSY_ANYONE=0;
+GR_AUTOPSY_MEDICS=1;
+GR_AUTOPSY_DOCTORS=2;
+
 [
     "GR_DEATHNOTIFY_STYLE",
     "LIST",
@@ -30,23 +34,23 @@ GR_NOTIFY_HINT=2;
 [
     "GR_DEATHNOTIFY_MARKER",
     "CHECKBOX",
-	"Mark civilian deaths on map",
+	"Mark civilian deaths on map?",
 	"Guilt & Remembrance",
 	true
 ] call CBA_fnc_AddSetting;
 
 [
-    "GR_AUTOPSY_MEDICREQ",
+    "GR_AUTOPSY_CLASS",
     "CHECKBOX",
-	"Only medics can perform autopsies",
+	"Who can perform autopsies?",
 	"Guilt & Remembrance",
-	false
+	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],["Anyone","Medics+Doctors","Doctors only"],2]
 ] call CBA_fnc_AddSetting;
 
 [
     "GR_ONKILL_ADDBODYBAG",
     "CHECKBOX",
-	"Add bodybag to dead civilian's inventory",
+	"Add bodybag to dead civilian's inventory?",
 	"Guilt & Remembrance",
 	false
 ] call CBA_fnc_AddSetting;
