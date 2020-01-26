@@ -16,7 +16,7 @@ _Burial and Exhumation_
 * The items carried by the dead are transferred to the body bag, and persist through burial and exhumation.
 
 _Autopsies_
-* Medics can perform an autopsy on any body in the field to determine cause of death (requires Surgical Kit).
+* Medics and Doctors can perform an autopsy on any body in the field to determine cause of death (requires Surgical Kit).
 * When performed by a Doctor or near a medical facility, an autopsy can also determine the time of death, the faction of the killer — and can even reveal the identity of an unknown victim whose death had been concealed, allowing the body to be returned to his family.
 
 _Customization_
