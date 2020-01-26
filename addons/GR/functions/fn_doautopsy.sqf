@@ -18,9 +18,9 @@ if(_player getVariable ["ace_medical_medicClass", 0] == 2) then {
 	_medicF=true;
 } else {
 	_nearObjs = _target nearObjects 15;
-	{
-		if(_x getVariable ["ace_medical_isMedicalFacility", false] != -1) exitWith { _medicF = true };
-	} forEach _nearObjs;
+	if(_nearObjs findIf {(_x getVariable ["ace_medical_isMedicalFacility", false]) || ((!isPlayer _x) && (_x getVariable ["ace_medical_medicClass", 0] > 0))} != -1) then {
+		_medicF = true;
+	};
 };
 
 // Patient name & age
