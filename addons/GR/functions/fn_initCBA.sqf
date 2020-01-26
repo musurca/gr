@@ -44,7 +44,7 @@ GR_AUTOPSY_DOCTORS=2;
     "LIST",
 	["Who can perform autopsies?","Choose which class(es) can perform basic autopsies."],
 	"Guilt & Remembrance",
-	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],["Anyone","Medics+Doctors","Doctors only"],2]
+	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],["Anyone","Medics+Doctors","Doctors only"],1]
 ] call CBA_fnc_AddSetting;
 
 [

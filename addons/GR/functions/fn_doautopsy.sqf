@@ -19,7 +19,7 @@ if(_player getVariable ["ace_medical_medicClass", 0] == 2) then {
 } else {
 	_nearObjs = _target nearObjects 15;
 	{
-		if(_x getVariable ["ace_medical_isMedicalFacility", false] == true) exitWith { _medicF = true };
+		if(_x getVariable ["ace_medical_isMedicalFacility", false] != -1) exitWith { _medicF = true };
 	} forEach _nearObjs;
 };
 
