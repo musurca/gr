@@ -93,7 +93,7 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
-v1.32 (January 20, 2020):
+v1.32 (January 26, 2020):
 * bugfix: doctors can now perform autopsies
 * added: CBA setting to determine who can perform autopsies
 
