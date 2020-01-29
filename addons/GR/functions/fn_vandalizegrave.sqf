@@ -14,10 +14,10 @@ if(!isServer) exitWith {};
 params ["_target"];
 //TODO: play sound?	
 _target setVariable ["IS_LEGIBLE",false,true];
-_name = (_target getVariable ["DOGTAG_DATA",["Unknown","",""]]) select 0;
-_firstName = "John";
-_lastName = "Doe";
-if (_name != "Unknown") then {
+_name = (_target getVariable ["DOGTAG_DATA",[localize "STR_EXHUMEBODY_Unknown","",""]]) select 0;
+_firstName = localize "STR_EXHUMEBODY_John";
+_lastName = localize "STR_EXHUMEBODY_Doe";
+if (_name != localize "STR_EXHUMEBODY_Unknown") then {
 	_nameToks = _name splitString " ";
 	_firstName = _nameToks select 0;
 	if (count _nameToks > 1) then {
@@ -25,7 +25,7 @@ if (_name != "Unknown") then {
 	};
 };
 // Hide name, recoverable by autopsy at medical facility
-_target setVariable ["DOGTAG_DATA",["Unknown",_firstName,_lastName],true];
+_target setVariable ["DOGTAG_DATA",[localize "STR_EXHUMEBODY_Unknown",_firstName,_lastName],true];
 
 _task = _target getVariable ["GR_HIDEBODY_TASK",""];
 if (_task != "") then {
@@ -41,7 +41,7 @@ if (_task != "") then {
 
 			_kin = _target getVariable "GR_NEXTOFKIN";
 			[_task,"Succeeded",false] call BIS_fnc_taskSetState;
-			["TaskSucceeded",["","Conceal Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
+			["TaskSucceeded",["",localize "STR_VANDALIZEGRAVE_Conceal_task"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
 
 			// Remove from player responsibilities
 			_deathArray = [GR_PLAYER_TASKS,_pUID] call CBA_fnc_hashGet;

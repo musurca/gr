@@ -11,14 +11,14 @@
 params["_killerName","_killedName","_killedAge", "_killedPos", "_killedId"];
 
 switch (GR_DEATHNOTIFY_STYLE) do {
-	case GR_NOTIFY_HINT: { 
-		_text = format ["<t color='#cc0808' align='center'>%1 has killed a civilian.<br/><t color='#dddddd'>(%2, age %3)</t></t>",
+	case GR_NOTIFY_HINT: {
+		_text = format [localize "STR_LOCALNOTIFYCIVDEATH_Civkilled_hint",
 						_killerName, _killedName, _killedAge];
 		hintSilent parseText _text 
 	};
-	case GR_NOTIFY_SIDECHAT: { 
-		_text = format ["%1 has killed a civilian. (%2, age %3)",_killerName, _killedName, _killedAge];
-		[side player, "HQ"] sideChat _text 
+	case GR_NOTIFY_SIDECHAT: {
+		_text = format [localize "STR_LOCALNOTIFYCIVDEATH_Civkilled_chat",_killerName, _killedName, _killedAge];
+		[side player, "HQ"] sideChat _text
 	};
 };
 
@@ -31,5 +31,5 @@ if (GR_DEATHNOTIFY_MARKER) then {
 };
 
 // Make diary record of killing
-_diaryText= format ["%1 killed %2 (age %3).", _killerName, _killedName, _killedAge];
-player createDiaryRecord ["Diary", ["Civilian Deaths", _diaryText]];
+_diaryText= format [localize "STR_LOCALNOTIFYCIVDEATH_Civkilled_diary", _killerName, _killedName, _killedAge];
+player createDiaryRecord ["Diary", [localize "STR_LOCALNOTIFYCIVDEATH_diary", _diaryText]];

@@ -29,24 +29,24 @@ if ((count _dogtagData) == 0) then {
 	_dogtagData = [_target] call ace_dogtags_fnc_getDogtagData;
 };
 _patientName = _dogtagData select 0;
-_patientAge = _target getVariable ["AGE",(round random [18,30,50])];
+_patientAge = _target getVariable [localize "STR_AUTOPSY_Age",(round random [18,30,50])];
 _isUnknown = false;
-if(_patientName == "Unknown" || (_patientName isEqualTo "Bodybag")) then { 
-	_isUnknown = true; 
+if(_patientName == localize "STR_EXHUMEBODY_Unknown" || (_patientName isEqualTo "Bodybag")) then {
+	_isUnknown = true;
 } else {
-	_patientName = format ["%1 (age %2)",_patientName,_patientAge];
+	_patientName = format [localize "STR_AUTOPSY_Name_Age",_patientName,_patientAge];
 };
-_causeMsg = "NAME: " + _patientName + "<br/><br/>"; 
+_causeMsg = localize "STR_AUTOPSY_Name" + _patientName + "<br/><br/>";
 
 // Cause of death
-_causeMsg = _causeMsg + "CAUSE OF DEATH: " + 
+_causeMsg = _causeMsg + localize "STR_AUTOPSY_Cause" +
 			(GR_COD_MSGS select (_target getVariable ["GR_DEATHCAUSE",GR_COD_UNKNOWN]));
 
 // Additional information that can only be determined at a medical facility
 if(_medicF) then {
 	_killerSide = _target getVariable ["GR_KILLERSIDE",CIVILIAN];
 	if(_killerSide != CIVILIAN) then {
-		_factionName = "no one";
+		_factionName = localize "STR_AUTOPSY_killernone";
 		if(_killerSide == EAST) then {
 			_factionName = GR_FACTIONNAME_EAST;
 		};
@@ -56,7 +56,7 @@ if(_medicF) then {
 		if(_killerSide == INDEPENDENT) then {
 			_factionName = GR_FACTIONNAME_IND;
 		};
-		_causeMsg = _causeMsg + " The wounds are consistent with equipment used by " + _factionName + ".<br/><br/>";
+		_causeMsg = _causeMsg + localize "STR_AUTOPSY_CauseMsg" + _factionName + ".<br/><br/>";
 	} else {
 		_causeMsg = _causeMsg + "<br/><br/>";
 	};
@@ -67,25 +67,25 @@ if(_medicF) then {
 		_month = _timeOfDeath select 1;
 		_day = _timeOfDeath select 2;
 		_hour = _timeOfDeath select 3;
-		
-		_monthText = ["January","February","March","April","May","June","July","August","September","October",
-					  "November","December"] select (_month - 1);
-		_hourText = str (_hour) + "00 hours";
+
+		_monthText = [localize "STR_AUTOPSY_January",localize "STR_AUTOPSY_February",localize "STR_AUTOPSY_March",localize "STR_AUTOPSY_April",localize "STR_AUTOPSY_May",localize "STR_AUTOPSY_June",localize "STR_AUTOPSY_July",localize "STR_AUTOPSY_August",localize "STR_AUTOPSY_September",localize "STR_AUTOPSY_October",
+					  localize "STR_AUTOPSY_November", localize "STR_AUTOPSY_December"] select (_month - 1);
+		_hourText = str (_hour) + localize "STR_AUTOPSY_hours";
 		if(_hour < 10) then {
 			_hourText = "0" + _hourText;
 		};
-		_dateText = format ["%1 %2, around %3.",_monthText,_day,_hourText];
-		
-		_causeMsg = _causeMsg + "TIME OF DEATH: " + _dateText;
+		_dateText = format [localize "STR_AUTOPSY_Timeofdeath_text",_monthText,_day,_hourText];
+
+		_causeMsg = _causeMsg + localize "STR_AUTOPSY_Timeofdeath" + _dateText;
 	};
 
 	if(_isUnknown) then {
 		_firstName = _dogtagData select 1;
 		_lastName = _dogtagData select 2;
-		_actualName = format ["%1 %2",_firstName,_lastName];
+		_actualName = format [localize "STR_AUTOPSY_Actualname",_firstName,_lastName];
 		_target setVariable ["DOGTAG_DATA",[_actualName,"",""]];
-		_causeMsg = _causeMsg + "<br/><br/>IDENTITY: Dental records indicate that the patient may be " + format ["%1, a %2-year-old male. His family has been notified.",_actualName,_patientAge];
-	
+		_causeMsg = _causeMsg + localize "STR_AUTOPSY_identityMsg" + format [localize "STR_AUTOPSY_identityMsgtext",_actualName,_patientAge];
+
 		[_player, _target, _actualName] call GR_fnc_makeMissionDeliverBody;
 		
 		// Call custom event handler on reveal of concealed identity
@@ -94,7 +94,7 @@ if(_medicF) then {
 		} forEach GR_EH_REVEALDEATH;
 	};
 } else {
-	_causeMsg = _causeMsg + "<br/><br/>To learn more, you would need to perform this autopsy closer to a medical facility.";
+	_causeMsg = _causeMsg + localize "STR_AUTOPSY_learnmore_text";
 };
 
 // Send to player

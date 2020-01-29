@@ -10,4 +10,4 @@
 params["_autopsyText"];
 
 _xmlText = format["<t>%1</t>",_autopsyText];
-[parseText _xmlText, "Autopsy Report", "Approve"] call BIS_fnc_guiMessage;
+[parseText _xmlText, localize "STR_LOCALNOTIFYAUTOPSY_Aut_report", localize "STR_LOCALNOTIFYAUTOPSY_Approve"] call BIS_fnc_guiMessage;

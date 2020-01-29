@@ -26,15 +26,15 @@ GR_AUTOPSY_DOCTORS=2;
 [
     "GR_DEATHNOTIFY_STYLE",
     "LIST",
-	["Civilian death notification style","Choose where the notification of a civilian death appears."],
+	[localize "STR_FNINITCBA_civdeath_noticestyle",localize "STR_FNINITCBA_civdeath_noticestyle2"],
 	"Guilt & Remembrance",
-	[[GR_NOTIFY_DIARY,GR_NOTIFY_SIDECHAT,GR_NOTIFY_HINT],["Diary Record Only","Side Chat (lower left)","Hint (top right)"],2]
+	[[GR_NOTIFY_DIARY,GR_NOTIFY_SIDECHAT,GR_NOTIFY_HINT],[localize "STR_FNINITCBA_notice_diary",localize "STR_FNINITCBA_notice_chat",localize "STR_FNINITCBA_notice_hint"],2]
 ] call CBA_fnc_AddSetting;
 
 [
     "GR_DEATHNOTIFY_MARKER",
     "CHECKBOX",
-	["Mark civilian deaths on map?","If selected, civilian deaths will be marked on the map with a yellow dot."],
+	[localize "STR_FNINITCBA_civdeath_marks",localize "STR_FNINITCBA_civdeath_marks2"],
 	"Guilt & Remembrance",
 	true
 ] call CBA_fnc_AddSetting;
@@ -42,15 +42,15 @@ GR_AUTOPSY_DOCTORS=2;
 [
     "GR_AUTOPSY_CLASS",
     "LIST",
-	["Who can perform autopsies?","Choose which class(es) can perform basic autopsies."],
+	[localize "STR_FNINITCBA_candoautopsy",localize "STR_FNINITCBA_candoautopsy2"],
 	"Guilt & Remembrance",
-	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],["Anyone","Medics+Doctors","Doctors only"],1]
+	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],[localize "STR_FNINITCBA_anyone", lozalize "STR_FNINITCBA_medicsdoctors",localize"STR_FNINITCBA_doctorsonly"],1]
 ] call CBA_fnc_AddSetting;
 
 [
     "GR_ONKILL_ADDBODYBAG",
     "CHECKBOX",
-	["Add bodybag to dead civilian's inventory?","Use in scenarios where bodybags would be otherwise impossible to obtain, e.g. Antistasi."],
+	[localize "STR_FNINITCBA_addbodybag",localize "STR_FNINITCBA_addbodybag2"],
 	"Guilt & Remembrance",
 	false
 ] call CBA_fnc_AddSetting;

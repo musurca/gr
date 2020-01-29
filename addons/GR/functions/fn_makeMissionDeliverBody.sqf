@@ -53,7 +53,7 @@ _nextOfKin allowFleeing 0;
 doStop _nextOfKin;
 
 _bigTask = format ["GRtsk_%1",_nextOfKin call BIS_fnc_netId];
-[side _killer,_bigTask,[format ["Deliver the body of %1 to his nearest relative.",_nameKilled],"Deal with Civilian Death","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
+[side _killer,_bigTask,[format [localize "STR_DELIVERBODY_Bigtask_Text",_nameKilled],localize "STR_DELIVERBODY_Bigtask","meet"], _nextOfKin,"CREATED",0,false,"meet"] call BIS_fnc_taskCreate;
 
 _nextOfKin setVariable ["GR_DELIVERBODY_TASK",_bigTask];
 _nextOfKin setVariable ["GR_CORPSE_ID",_corpseId];
@@ -71,8 +71,8 @@ _eh = _nextOfKin addEventHandler ["Killed", {
 	_pUID = _taskInfo select 2;
 
 	[_task,"Failed",false] call BIS_fnc_taskSetState;
-	["TaskFailed",["","Deal with Civilian Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-		
+	["TaskFailed",["",localize "STR_DELIVERBODY_Bigtask"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
+
 	// Remove from player responsibilities
 	_deathArray = [GR_PLAYER_TASKS,_pUID] call CBA_fnc_hashGet;
 	if (count _deathArray > 0) then {
@@ -108,8 +108,8 @@ _deathArray pushBack _nextOfKin;
 
 	// Wait to announce the mission
 	sleep random [GR_TASK_MIN_DELAY, GR_TASK_MID_DELAY, GR_TASK_MAX_DELAY];
-	["TaskCreated",["","Deal with Civilian Death"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-		
+	["TaskCreated",["",localize "STR_DELIVERBODY_Bigtask"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
+
 	_bodyDelivered=false;
 	waitUntil {
 		sleep 6;
@@ -128,8 +128,8 @@ _deathArray pushBack _nextOfKin;
 					_kin lookAt _body;
 
 					[_task,"Succeeded",false] call BIS_fnc_taskSetState;
-					["TaskSucceeded",["","Deliver Body"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
-						
+					["TaskSucceeded",["",localize "STR_DELIVERBODY_task"]] remoteExec ["BIS_fnc_showNotification",_taskOwner];
+
 					// remove from player responsibility
 					_deathArray = [GR_PLAYER_TASKS,_playerUID] call CBA_fnc_hashGet;
 					if (count _deathArray > 0) then {

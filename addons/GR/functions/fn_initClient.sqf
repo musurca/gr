@@ -21,7 +21,7 @@ if (isNil "GR_AUTOPSY_CLASS") then {
 };
 
 // new ACE actions for body bags and graves
-GR_ace_autopsyAction = ["actionAutopsy","Perform autopsy","",{
+GR_ace_autopsyAction = ["actionAutopsy",localize "STR_FNINITCLIENT_Autopsy_action","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
 	[
 		8,
@@ -34,12 +34,12 @@ GR_ace_autopsyAction = ["actionAutopsy","Perform autopsy","",{
 		{ // interruption
 			player switchMove "";
 		},
-		"Performing autopsy..."
+		localize "STR_FNINITCLIENT_Autopsy_process"
 	] call ace_common_fnc_progressBar;
 }, {("ACE_surgicalKit" in (items _player)) && (_player getVariable ["ace_medical_medicClass", 0] >= GR_AUTOPSY_CLASS) }] call ace_interact_menu_fnc_createAction;
 ["ACE_bodyBagObject",0,["ACE_MainActions"],GR_ace_autopsyAction] call ace_interact_menu_fnc_addActionToClass;
 
-GR_ace_burialAction = ["actionBury","Bury","",{
+GR_ace_burialAction = ["actionBury",localize "STR_FNINITCLIENT_Bury_action","",{
 	player playMove "acts_miller_knockout"; //alt: 'Acts_CivilTalking_2'
 	[
 		8,
@@ -52,12 +52,12 @@ GR_ace_burialAction = ["actionBury","Bury","",{
 		{ // interruption
 			player switchMove "";
 		},
-		"Burying body..."
+		localize "STR_FNINITCLIENT_Bury_process"
 	] call ace_common_fnc_progressBar;
 }, {"ACE_EntrenchingTool" in (items _player)}] call ace_interact_menu_fnc_createAction;
 ["ACE_bodyBagObject",0,["ACE_MainActions"],GR_ace_burialAction] call ace_interact_menu_fnc_addActionToClass;
 
-GR_ace_vandalizeAction = ["actionVandalize","Vandalize marker","",{
+GR_ace_vandalizeAction = ["actionVandalize",localize "STR_FNINITCLIENT_Vandalize_action","",{
 	if(_target getVariable ["IS_LEGIBLE",true]) then {
 		player playMove "acts_miller_knockout";
 		[
@@ -67,20 +67,20 @@ GR_ace_vandalizeAction = ["actionVandalize","Vandalize marker","",{
 				params["_target"];
 				[_target,player] remoteExecCall ["GR_fnc_vandalizegrave",2];
 				player switchMove "";
-				hint "You scratch out the name on the marker.";
+				hint localize "STR_FNINITCLIENT_Vandalize_hint";
 			},
 			{ // interruption
 				player switchMove "";
 			},
-			"Vandalizing marker..."
+			localize "STR_FNINITCLIENT_Vandalize_process"
 		] call ace_common_fnc_progressBar;
 	} else {
-		hintSilent "The marker is already illegible.";
+		hintSilent localize "STR_FNINITCLIENT_Vandalized_hint";
 	};
 }, {true}] call ace_interact_menu_fnc_createAction;
 ["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_vandalizeAction] call ace_interact_menu_fnc_addActionToClass;
 
-GR_ace_exhumeAction = ["actionExhume","Exhume","",{
+GR_ace_exhumeAction = ["actionExhume",localize "STR_FNINITCLIENT_Exhume_action","",{
 	player playMove "acts_miller_knockout";
 	[
 		6,
@@ -93,25 +93,25 @@ GR_ace_exhumeAction = ["actionExhume","Exhume","",{
 		{ 
 			player switchMove "";
 		},
-		"Exhuming body..."
+		localize "STR_FNINITCLIENT_Exhume_process"
 	] call ace_common_fnc_progressBar;
 }, {"ACE_EntrenchingTool" in (items _player)}] call ace_interact_menu_fnc_createAction;
 ["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_exhumeAction] call ace_interact_menu_fnc_addActionToClass;
 
-GR_ace_readEpitaphAction = ["actionEpitaph","Read marker","",{
+GR_ace_readEpitaphAction = ["actionEpitaph",localize "STR_FNINITCLIENT_Readmarker_action","",{
 	params ["_target", "_player"];
 	if(_target getVariable ["IS_LEGIBLE",true]) then {
-		_name = (_target getVariable ["DOGTAG_DATA", ["Unknown","",""]]) select 0;
+		_name = (_target getVariable ["DOGTAG_DATA", [localize "STR_EXHUMEBODY_Unknown","",""]]) select 0;
 		_age = _target getVariable ["AGE",0];
 		_yearDied = date select 0;
 		_yearBorn = _yearDied - _age;
-		if (_name != "Unknown") then {
-			hintSilent parseText (format ["<t align='center'>%1<br/>Born %2  Died %3</t>",toUpper _name,_yearBorn,_yearDied]);
+		if (_name != localize "STR_EXHUMEBODY_Unknown") then {
+			hintSilent parseText (format [localize "STR_FNINITCLIENT_epitaphy_text",toUpper _name,_yearBorn,_yearDied]);
 		} else {
-			hintSilent parseText ("<t align='center'>UNKNOWN</t>");
+			hintSilent parseText (localize "STR_FNINITCLIENT_unknown_text");
 		};
 	} else {
-		hintSilent "Someone has scratched out the name on this grave."; 
-	}; 
+		hintSilent localize "STR_FNINITCLIENT_scratched_hint";
+	};
 }, {true}] call ace_interact_menu_fnc_createAction;
 ["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_readEpitaphAction] call ace_interact_menu_fnc_addActionToClass;

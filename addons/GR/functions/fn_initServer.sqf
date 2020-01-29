@@ -54,12 +54,12 @@ GR_COD_EXPLOSION=4;
 GR_COD_SHELL=5;
 GR_COD_CAUSES = [GR_COD_BULLET,GR_COD_GRENADE,GR_COD_GRENADE,GR_COD_EXPLOSION,GR_COD_EXPLOSION,GR_COD_EXPLOSION,GR_COD_SHELL];
 GR_COD_MSGS = [
-"You are unable to determine a cause of death.",
-"The patient was killed by gunshot wounds.",
-"The patient was killed by blunt-force trauma, likely due to collision with a vehicle.",
-"The patient exhibits shrapnel and fragmentation wounds, consistent with a grenade explosion.",
-"The patient exhibits blast and fragmentation wounds, consistent with an explosion.",
-"The patient exhibits broken bones and partial amputations, consistent with a massive explosion."
+localize "STR_FNINITSERVER_COD_UNKNOWN",
+localize "STR_FNINITSERVER_COD_BULLET",
+localize "STR_FNINITSERVER_COD_VEHICLE",
+localize "STR_FNINITSERVER_COD_GRENADE",
+localize "STR_FNINITSERVER_COD_EXPLOSION",
+localize "STR_FNINITSERVER_COD_SHELL"
 ];
 
 // trace ID of corpse
