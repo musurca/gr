@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Guilt and Remembrance ML">
+  <Package name="Main">
+    <Key ID="STR_AUTOPSY_Name_Age">
+      <Original>%1 (age %2)</Original>
+      <English>%1 (age %2)</English>
+      <Russian>%1 (возраст: %2)</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_Age">
+      <Original>AGE</Original>
+      <English>AGE</English>
+      <Russian>ВОЗРАСТ:</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_Name">
+      <Original>NAME:&lt;t&gt; &lt;/t&gt;</Original>
+      <English>NAME:&lt;t&gt; &lt;/t&gt;</English>
+      <Russian>ИМЯ:&lt;t&gt; &lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_Cause">
+      <Original>CAUSE OF DEATH:&lt;t&gt; &lt;/t&gt;</Original>
+      <English>CAUSE OF DEATH:&lt;t&gt; &lt;/t&gt;</English>
+      <Russian>ПРИЧИНА СМЕРТИ:&lt;t&gt; &lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_killernone">
+      <Original>no one</Original>
+      <English>no one</English>
+      <Russian>неизвестно</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_CauseMsg">
+      <Original>&lt;t&gt; &lt;/t&gt;The wounds are consistent with equipment used by&lt;t&gt; &lt;/t&gt;</Original>
+      <English>&lt;t&gt; &lt;/t&gt;The wounds are consistent with equipment used by&lt;t&gt; &lt;/t&gt;</English>
+      <Russian>&lt;t&gt; &lt;/t&gt;Раны соответствуют оружию, используемому &lt;t&gt; &lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_January">
+      <Original>January</Original>
+      <English>January</English>
+      <Russian>Января</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_February">
+      <Original>February</Original>
+      <English>February</English>
+      <Russian>Февраля</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_March">
+      <Original>March</Original>
+      <English>March</English>
+      <Russian>Марта</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_April">
+      <Original>April</Original>
+      <English>April</English>
+      <Russian>Апреля</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_May">
+      <Original>May</Original>
+      <English>May</English>
+      <Russian>Мая</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_June">
+      <Original>June</Original>
+      <English>June</English>
+      <Russian>Июня</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_July">
+      <Original>July</Original>
+      <English>July</English>
+      <Russian>Июля</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_August">
+      <Original>August</Original>
+      <English>August</English>
+      <Russian>Августа</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_September">
+      <Original>September</Original>
+      <English>September</English>
+      <Russian>Сентября</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_October">
+      <Original>October</Original>
+      <English>October</English>
+      <Russian>Октября</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_November">
+      <Original>November</Original>
+      <English>November</English>
+      <Russian>Ноября</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_December">
+      <Original>December</Original>
+      <English>December</English>
+      <Russian>Декабря</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_0hours">
+      <Original>00 hours</Original>
+      <English>00 hours</English>
+      <Russian>00 часов</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_Timeofdeath_text">
+      <Original>%1 %2, around %3.</Original>
+      <English>%1 %2, around %3.</English>
+      <Russian>%2 %1, около %3.</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_Timeofdeath">
+      <Original>TIME OF DEATH:&lt;t&gt; &lt;/t&gt;</Original>
+      <English>TIME OF DEATH:&lt;t&gt; &lt;/t&gt;</English>
+      <Russian>ВРЕМЯ СМЕРТИ:&lt;t&gt; &lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_Actualname">
+      <Original>%1 %2</Original>
+      <English>%1 %2</English>
+      <Russian>%1 %2</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_identityMsg">
+      <Original>&lt;br/&gt;&lt;br/&gt;IDENTITY: Dental records indicate that the patient may be&lt;t&gt; &lt;/t&gt;</Original>
+      <English>&lt;br/&gt;&lt;br/&gt;IDENTITY: Dental records indicate that the patient may be&lt;t&gt; &lt;/t&gt;</English>
+      <Russian>&lt;br/&gt;&lt;br/&gt;ЛИЧНОСТЬ: Записи дантиста указывают на пациента &lt;t&gt; &lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_identityMsg_text">
+      <Original>%1, a %2-year-old male. His family has been notified.</Original>
+      <English>%1, a %2-year-old male. His family has been notified.</English>
+      <Russian>%1, мужчина, возраст %2. Его семью уже известили.</Russian>
+    </Key>
+    <Key ID="STR_AUTOPSY_learnmore_text">
+      <Original>&lt;br/&gt;&lt;br/&gt;To learn more, you would need to perform this autopsy closer to a medical facility.</Original>
+      <English>&lt;br/&gt;&lt;br/&gt;To learn more, you would need to perform this autopsy closer to a medical facility.</English>
+      <Russian>&lt;br/&gt;&lt;br/&gt;Чтобы узнать больше, необходимо провести вскрытие вблизи медицинского учреждения.</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_civdeath_noticestyle">
+      <Original>Civilian death notification style</Original>
+      <English>Civilian death notification style</English>
+      <Russian>Уведомления о смерти гражданских</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_civdeath_noticestyle2">
+      <Original>Choose where the notification of a civilian death appears.</Original>
+      <English>Choose where the notification of a civilian death appears.</English>
+      <Russian>Выберите, где будет показываться уведомление о потерях.</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_notice_diary">
+      <Original>Diary Record Only</Original>
+      <English>Diary Record Only</English>
+      <Russian>Только в Брифинге</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_notice_chat">
+      <Original>Side Chat (lower left)</Original>
+      <English>Side Chat (lower left)</English>
+      <Russian>В окне чата (внизу слева)</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_notice_hint">
+      <Original>Hint (top right)</Original>
+      <English>Hint (top right)</English>
+      <Russian>В окне подсказок (справа вверху)</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_civdeath_marks">
+      <Original>Mark civilian deaths on map</Original>
+      <English>Mark civilian deaths on map</English>
+      <Russian>Отмечать места гибели на карте</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_civdeath_marks2">
+      <Original>If selected, civilian deaths will be marked on the map with a yellow dot.</Original>
+      <English>If selected, civilian deaths will be marked on the map with a yellow dot.</English>
+      <Russian>Если выбрано, места гибели будут отмечены на карте желтыми точками.</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_candoautopsy">
+      <Original>Who can perform autopsies?</Original>
+      <English>Who can perform autopsies?</English>
+      <Russian>Кто может проводить вскрытия?</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_candoautopsy2">
+      <Original>Choose which class(es) can perform basic autopsies.</Original>
+      <English>Choose which class(es) can perform basic autopsies.</English>
+      <Russian>Выберите класс(Ы), которые могут проводить базовые вскрытия.</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_anyone">
+      <Original>Anyone</Original>
+      <English>Anyone</English>
+      <Russian>Кто угодно</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_medicsdoctors">
+      <Original>Medics+Doctors</Original>
+      <English>Medics+Doctors</English>
+      <Russian>Санитары и Врачи</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_doctorsonly">
+      <Original>Doctors only</Original>
+      <English>Doctors only</English>
+      <Russian>Только Врачи</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_addbodybag">
+      <Original>Add bodybag to dead civilian's inventory?</Original>
+      <English>Add bodybag to dead civilian's inventory?</English>
+      <Russian>Добавлять мешок в инвентарь погибшего?</Russian>
+    </Key>
+    <Key ID="STR_FNINITCBA_addbodybag2">
+      <Original>Use in scenarios where bodybags would be otherwise impossible to obtain, e.g. Antistasi.</Original>
+      <English>Use in scenarios where bodybags would be otherwise impossible to obtain, e.g. Antistasi.</English>
+      <Russian>Используется в сценариях, где невозможно получить иным способом, к примеру Antistasi.</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Autopsy_action">
+      <Original>Perform autopsy</Original>
+      <English>Perform autopsy</English>
+      <Russian>Провести вскрытие</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Autopsy_process">
+      <Original>Performing autopsy...</Original>
+      <English>Performing autopsy...</English>
+      <Russian>Производится вскрытие...</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Bury_action">
+      <Original>Bury</Original>
+      <English>Bury</English>
+      <Russian>Похоронить тело</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Bury_process">
+      <Original>Burying body...</Original>
+      <English>Burying body...</English>
+      <Russian>Погребение тела...</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Vandalize_action">
+      <Original>Vandalize marker</Original>
+      <English>Vandalize marker</English>
+      <Russian>Стереть надпись на могиле</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Vandalize_hint">
+      <Original>You scratch out the name on the marker.</Original>
+      <English>You scratch out the name on the marker.</English>
+      <Russian>Вы стираете надпись на могиле.</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Vandalize_process">
+      <Original>Vandalizing marker...</Original>
+      <English>Vandalizing marker...</English>
+      <Russian>Стирание надписи...</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Vandalized_hint">
+      <Original>The marker is already illegible.</Original>
+      <English>The marker is already illegible.</English>
+      <Russian>Надпись уже нечитаема</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Exhume_action">
+      <Original>Exhume</Original>
+      <English>Exhume</English>
+      <Russian>Провести эксгумацию</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Exhume_process">
+      <Original>Exhuming body...</Original>
+      <English>Exhuming body...</English>
+      <Russian>Проводится эксгумация...</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_Readmarker_action">
+      <Original>Read marker</Original>
+      <English>Read marker</English>
+      <Russian>Прочесть надпись</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_epitaphy_text">
+      <Original>&lt;t align='center'&gt;%1&lt;br/&gt;Born %2  Died %3&lt;/t&gt;</Original>
+      <English>&lt;t align='center'&gt;%1&lt;br/&gt;Born %2  Died %3&lt;/t&gt;</English>
+      <Russian>&lt;t align='center'&gt;%1&lt;br/&gt;%2 - %3&lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_unknown_text">
+      <Original>&lt;t align='center'&gt;UNKNOWN&lt;/t&gt;</Original>
+      <English>&lt;t align='center'&gt;UNKNOWN&lt;/t&gt;</English>
+      <Russian>&lt;t align='center'&gt;НЕИЗВЕСТНЫЙ&lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_FNINITCLIENT_scratched_hint">
+      <Original>Someone has scratched out the name on this grave.</Original>
+      <English>Someone has scratched out the name on this grave.</English>
+      <Russian>Кто-то стёр имя на этой могиле.</Russian>
+    </Key>
+    <Key ID="STR_FNINITSERVER_COD_UNKNOWN">
+      <Original>You are unable to determine a cause of death.</Original>
+      <English>You are unable to determine a cause of death.</English>
+      <Russian>Вы не cмогли определить причину смерти.</Russian>
+    </Key>
+    <Key ID="STR_FNINITSERVER_COD_BULLET">
+      <Original>The patient was killed by gunshot wounds.</Original>
+      <English>The patient was killed by gunshot wounds.</English>
+      <Russian>Жертва скончалась от огнестрельных ранений.</Russian>
+    </Key>
+    <Key ID="STR_FNINITSERVER_COD_VEHICLE">
+      <Original>The patient was killed by blunt-force trauma, likely due to collision with a vehicle.</Original>
+      <English>The patient was killed by blunt-force trauma, likely due to collision with a vehicle.</English>
+      <Russian>Жертва получила удар тупым предметом, вероятно, из-за столкновения с транспортным средством.</Russian>
+    </Key>
+    <Key ID="STR_FNINITSERVER_COD_GRENADE">
+      <Original>The patient exhibits shrapnel and fragmentation wounds, consistent with a grenade explosion.</Original>
+      <English>The patient exhibits shrapnel and fragmentation wounds, consistent with a grenade explosion.</English>
+      <Russian>Обнаруженые осколочные ранения на теле и фрагменты осколков, указывают на взрыв гранаты.</Russian>
+    </Key>
+    <Key ID="STR_FNINITSERVER_COD_EXPLOSION">
+      <Original>The patient exhibits blast and fragmentation wounds, consistent with an explosion.</Original>
+      <English>The patient exhibits blast and fragmentation wounds, consistent with an explosion.</English>
+      <Russian>На теле обнаружены повреждения и осколочые ранения, характерные для взрыва.</Russian>
+    </Key>
+    <Key ID="STR_FNINITSERVER_COD_SHELL">
+      <Original>The patient exhibits broken bones and partial amputations, consistent with a massive explosion.</Original>
+      <English>The patient exhibits broken bones and partial amputations, consistent with a massive explosion.</English>
+      <Russian>Переломы костей и частичные ампутации у пациента, соответствуют массированый взрыв фугасного заряда.</Russian>
+    </Key>
+    <Key ID="STR_LOCALNOTIFYAUTOPSY_Aut_report">
+      <Original>Autopsy Report</Original>
+      <English>Autopsy Report</English>
+      <Russian>Отчет о вскрытии</Russian>
+    </Key>
+    <Key ID="STR_LOCALNOTIFYAUTOPSY_Approve">
+      <Original>Approve</Original>
+      <English>Approve</English>
+      <Russian>Подпись</Russian>
+    </Key>
+    <Key ID="STR_LOCALNOTIFYCIVDEATH_Civkilled_hint">
+      <Original>&lt;t color='#cc0808' align='center'&gt;%1 has killed a civilian.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, age %3)&lt;/t&gt;&lt;/t&gt;</Original>
+      <English>&lt;t color='#cc0808' align='center'&gt;%1 has killed a civilian.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, age %3)&lt;/t&gt;&lt;/t&gt;</English>
+      <Russian>&lt;t color='#cc0808' align='center'&gt;%1 убил гражданского.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, возраст %3)&lt;/t&gt;&lt;/t&gt;</Russian>
+    </Key>
+    <Key ID="STR_LOCALNOTIFYCIVDEATH_Civkilled_chat">
+      <Original>%1 has killed a civilian. (%2, age %3)</Original>
+      <English>%1 has killed a civilian. (%2, age %3)</English>
+      <Russian>%1 убил гражданского. (%2, возраст %3)</Russian>
+    </Key>
+    <Key ID="STR_LOCALNOTIFYCIVDEATH_Civkilled_diary">
+      <Original>%1 killed %2 (age %3).</Original>
+      <English>%1 killed %2 (age %3).</English>
+      <Russian>%1 убил %2 (возраст %3)</Russian>
+    </Key>
+    <Key ID="STR_LOCALNOTIFYCIVDEATH_diary">
+      <Original>Civilian Deaths</Original>
+      <English>Civilian Deaths</English>
+      <Russian>Потери среди гражданских</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_House">
+      <Original>House</Original>
+      <English>House</English>
+      <Russian>Дом</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_Church">
+      <Original>Church</Original>
+      <English>Church</English>
+      <Russian>Церковь</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_Chapel">
+      <Original>Chapel</Original>
+      <English>Chapel</English>
+      <Russian>Часовня</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_Building">
+      <Original>Building</Original>
+      <English>Building</English>
+      <Russian>Здание</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_Hospital">
+      <Original>Hospital</Original>
+      <English>Hospital</English>
+      <Russian>Больница</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_Bigtask_Text">
+      <Original>Deliver the body of %1 to his nearest relative.</Original>
+      <English>Deliver the body of %1 to his nearest relative.</English>
+      <Russian>Доставить тело жителя по имени %1 его ближайшим родственникам.</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_Bigtask">
+      <Original>Deal with Civilian Death.</Original>
+      <English>Deal with Civilian Death.</English>
+      <Russian>Разобраться с потерей гражданского.</Russian>
+    </Key>
+    <Key ID="STR_EXHUMEBODY_Unknown">
+      <Original>Unknown</Original>
+      <English>Unknown</English>
+      <Russian>Неизвестный</Russian>
+    </Key>
+    <Key ID="STR_EXHUMEBODY_John">
+      <Original>John</Original>
+      <English>John</English>
+      <Russian>Василий</Russian>
+    </Key>
+    <Key ID="STR_EXHUMEBODY_Doe">
+      <Original>Doe</Original>
+      <English>Doe</English>
+      <Russian>Пупкин</Russian>
+    </Key>
+    <Key ID="STR_DELIVERBODY_task">
+      <Original>Deliver Body</Original>
+      <English>Deliver Body</English>
+      <Russian>Доставить тело</Russian>
+    </Key>
+    <Key ID="STR_VANDALIZEGRAVE_Conceal_task">
+      <Original>Conceal Death</Original>
+      <English>Conceal Death</English>
+      <Russian>Утаить смерть гражданского.</Russian>
+    </Key>
+  </Package>
+</Project>

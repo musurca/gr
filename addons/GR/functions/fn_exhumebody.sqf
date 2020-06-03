@@ -20,7 +20,7 @@ _posTarget = [_posTarget select 0, _posTarget select 1, (_posTarget select 2)+0.
 _cId = _target getVariable ["CORPSE_ID",0];
 _dogtagData = _target getVariable "DOGTAG_DATA";
 if((_dogtagData select 0) isEqualTo "Bodybag") then {
-	_dogtagData = ["Unknown","John","Doe"];
+	_dogtagData = [localize "STR_EXHUMEBODY_Unknown",localize "STR_EXHUMEBODY_John",localize "STR_EXHUMEBODY_Doe"];
 };
 _vicAge = _target getVariable "AGE";
 _task = _target getVariable ["GR_HIDEBODY_TASK",""];
