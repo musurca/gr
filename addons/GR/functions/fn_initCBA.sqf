@@ -44,7 +44,7 @@ GR_AUTOPSY_DOCTORS=2;
     "LIST",
 	[localize "STR_FNINITCBA_candoautopsy",localize "STR_FNINITCBA_candoautopsy2"],
 	"Guilt & Remembrance",
-	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],[localize "STR_FNINITCBA_anyone", lozalize "STR_FNINITCBA_medicsdoctors",localize"STR_FNINITCBA_doctorsonly"],1]
+	[[GR_AUTOPSY_ANYONE,GR_AUTOPSY_MEDICS,GR_AUTOPSY_DOCTORS],[localize "STR_FNINITCBA_anyone", localize "STR_FNINITCBA_medicsdoctors",localize"STR_FNINITCBA_doctorsonly"],1]
 ] call CBA_fnc_AddSetting;
 
 [

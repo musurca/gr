@@ -93,6 +93,10 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 CHANGELOG:
 ---------------------
 
+v1.33 (June 3, 2020):
+* Russian localization (courtesy of [barman75](https://github.com/barman75))
+* BLM
+
 v1.32 (January 26, 2020):
 * bugfix: doctors can now perform autopsies
 * added: CBA setting to determine who can perform autopsies
