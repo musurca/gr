@@ -92,6 +92,9 @@ For questions, comments, or bug reports, please contact me directly at nick.musu
 
 CHANGELOG:
 ---------------------
+v1.33a (July 30, 2020):
+* fix: one-time msg repeating more than once
+* assorted fixes
 
 v1.33 (June 3, 2020):
 * Russian localization (courtesy of [barman75](https://github.com/barman75))

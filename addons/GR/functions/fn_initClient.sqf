@@ -115,12 +115,3 @@ GR_ace_readEpitaphAction = ["actionEpitaph",localize "STR_FNINITCLIENT_Readmarke
 	};
 }, {true}] call ace_interact_menu_fnc_createAction;
 ["Land_Grave_dirt_F",0,["ACE_MainActions"],GR_ace_readEpitaphAction] call ace_interact_menu_fnc_addActionToClass;
-
-[] spawn {
-	if(profileNamespace getVariable ["GR_BLM_MESSAGE_SHOWN",0] != 1) then {
-		profileNamespace setVariable ["GR_BLM_MESSAGE_SHOWN",1];
-		sleep 1;
-		_blmText = parseText "<t>Dear American friends:<br/>In the wake of George Floyd&#39;s murder by the Minneapolis Police, people all across the country have taken to the streets to protest the use of lethal force by local and state police. Nearly everywhere the police have responded with extreme violence: using batons, rubber bullets, and tear gas against crowds of unarmed and largely peaceful protesters. Many have suffered severe and permanent injuries; some have even been killed.<br/><br/>It is time to stop the flow of military equipment to the police, and end policies that have shielded violent police officers from prosecution. If you can, please support collective action by clicking the links below to support the following organizations:</t><t align='center'><br/><br/><a href='https://www.joincampaignzero.org'>Campaign Zero</a><br/><a href='https://www.naacpldf.org/'>NAACP Legal Defense Fund</a><br/><a href='https://blacklivesmatter.com/'>Black Lives Matter</a></t><t><br/><br/>Thanks for reading-- and please note that after clicking OK below, you will not see this message again.<br/><br/></t><t font='PuristaBold' align='center'>In solidarity with the international struggle against state violence in Hong Kong, Russia, France, and beyond.</t>";
-		[_blmText, "Guilt & Remembrance - June 3, 2020", "OK"] spawn BIS_fnc_guiMessage;
-	};
-};
