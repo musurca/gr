@@ -6,462 +6,539 @@
             <English>%1 (age %2)</English>
             <Russian>%1 (возраст: %2)</Russian>
             <German>%1 (alter %2)</German>
+            <Italian>%1 (età %2)</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_Age">
             <Original>AGE</Original>
             <English>AGE</English>
             <Russian>ВОЗРАСТ:</Russian>
             <German>ALTER</German>
+            <Italian>ETÀ</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_Name">
             <Original>NAME:&lt;t&gt; &lt;/t&gt;</Original>
             <English>NAME:&lt;t&gt; &lt;/t&gt;</English>
             <Russian>ИМЯ:&lt;t&gt; &lt;/t&gt;</Russian>
             <German>NAME &lt;t&gt; &lt;/t&gt;</German>
+            <Italian>NOME: &lt;t&gt; &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_Cause">
             <Original>CAUSE OF DEATH:&lt;t&gt; &lt;/t&gt;</Original>
             <English>CAUSE OF DEATH:&lt;t&gt; &lt;/t&gt;</English>
             <Russian>ПРИЧИНА СМЕРТИ:&lt;t&gt; &lt;/t&gt;</Russian>
             <German>TODESURSACHE &lt;t&gt; &lt;/t&gt;</German>
+            <Italian>CAUSA DELLA MORTE &lt;t&gt; &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_killernone">
             <Original>no one</Original>
             <English>no one</English>
             <Russian>неизвестно</Russian>
             <German>niemand</German>
+            <Italian>nessuno</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_CauseMsg">
             <Original>&lt;t&gt; &lt;/t&gt;The wounds are consistent with equipment used by&lt;t&gt; &lt;/t&gt;</Original>
             <English>&lt;t&gt; &lt;/t&gt;The wounds are consistent with equipment used by&lt;t&gt; &lt;/t&gt;</English>
             <Russian>&lt;t&gt; &lt;/t&gt;Раны соответствуют оружию, используемому &lt;t&gt; &lt;/t&gt;</Russian>
-            <German>&lt;t&gt;&lt;/t&gt; Die Wunden stimmen überein mit Ausrüstung die genutz wird von: &lt;t&gt; &lt;/t&gt;</German>
+            <German>&lt;t&gt;&lt;/t&gt; Die Wunden stimmen überein mit Ausrüstung die genutzt wird von: &lt;t&gt; &lt;/t&gt;</German>
+            <Italian>&lt;t&gt; &lt;/t&gt; Le ferite corrispondono all'equipaggiamento utilizzato da: &lt;t&gt; &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_January">
             <Original>January</Original>
             <English>January</English>
             <Russian>Января</Russian>
             <German>Januar</German>
+            <Italian>Gennaio</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_February">
             <Original>February</Original>
             <English>February</English>
             <Russian>Февраля</Russian>
             <German>Februar</German>
+            <Italian>Febbraio</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_March">
             <Original>March</Original>
             <English>March</English>
             <Russian>Марта</Russian>
             <German>März</German>
+            <Italian>Marzo</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_April">
             <Original>April</Original>
             <English>April</English>
             <Russian>Апреля</Russian>
             <German>April</German>
+            <Italian>Aprile</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_May">
             <Original>May</Original>
             <English>May</English>
             <Russian>Мая</Russian>
             <German>Mai</German>
+            <Italian>Maggio</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_June">
             <Original>June</Original>
             <English>June</English>
             <Russian>Июня</Russian>
             <German>Juni</German>
+            <Italian>Giugno</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_July">
             <Original>July</Original>
             <English>July</English>
             <Russian>Июля</Russian>
             <German>July</German>
+            <Italian>Luglio</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_August">
             <Original>August</Original>
             <English>August</English>
             <Russian>Августа</Russian>
             <German>August</German>
+            <Italian>Agosto</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_September">
             <Original>September</Original>
             <English>September</English>
             <Russian>Сентября</Russian>
             <German>September</German>
+            <Italian>Settembre</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_October">
             <Original>October</Original>
             <English>October</English>
             <Russian>Октября</Russian>
             <German>Oktober</German>
+            <Italian>Ottobre</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_November">
             <Original>November</Original>
             <English>November</English>
             <Russian>Ноября</Russian>
             <German>November</German>
+            <Italian>Novembre</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_December">
             <Original>December</Original>
             <English>December</English>
             <Russian>Декабря</Russian>
             <German>Dezember</German>
+            <Italian>Dicembre</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_0hours">
             <Original>00 hours</Original>
             <English>00 hours</English>
             <Russian>00 часов</Russian>
             <German>00 Stunden</German>
+            <Italian>00 ore</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_Timeofdeath_text">
             <Original>%1 %2, around %3.</Original>
             <English>%1 %2, around %3.</English>
             <Russian>%2 %1, около %3.</Russian>
             <German>%1 %2, gegen %3.</German>
+            <Italian>%1%2, contro %3.</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_Timeofdeath">
             <Original>TIME OF DEATH:&lt;t&gt; &lt;/t&gt;</Original>
             <English>TIME OF DEATH:&lt;t&gt; &lt;/t&gt;</English>
             <Russian>ВРЕМЯ СМЕРТИ:&lt;t&gt; &lt;/t&gt;</Russian>
             <German>ZEITPUNKT DES TODES:  &lt;t&gt; &lt;/t&gt;</German>
+            <Italian>ORA DELLA MORTE: &lt;t&gt; &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_Actualname">
             <Original>%1 %2</Original>
             <English>%1 %2</English>
             <Russian>%1 %2</Russian>
             <German>%1 %2</German>
+            <Italian>%1 %2</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_identityMsg">
             <Original>&lt;br/&gt;&lt;br/&gt;IDENTITY: Dental records indicate that the patient may be&lt;t&gt; &lt;/t&gt;</Original>
             <English>&lt;br/&gt;&lt;br/&gt;IDENTITY: Dental records indicate that the patient may be&lt;t&gt; &lt;/t&gt;</English>
             <Russian>&lt;br/&gt;&lt;br/&gt;ЛИЧНОСТЬ: Записи дантиста указывают на пациента &lt;t&gt; &lt;/t&gt;</Russian>
             <German>&lt;br/&gt;&lt;br/&gt;IDENTITÄT: Laut unterlagen des Zahnarztes handelt es sich wahrscheinlich um&lt;t&gt; &lt;/t&gt;</German>
+            <Italian>&lt;br/&gt; &lt;br/&gt; IDENTITÀ: secondo i registri del dentista, questo è probabilmente &lt;t&gt; &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_identityMsg_text">
             <Original>%1, a %2-year-old male. His family has been notified.</Original>
             <English>%1, a %2-year-old male. His family has been notified.</English>
             <Russian>%1, мужчина, возраст %2. Его семью уже известили.</Russian>
-            <German>%1, ein %2 jahre alter Man. Seine Familie wurde benachrichtigt.</German>
+            <German>%1, ein %2 jahre alter Mann. Seine Familie wurde benachrichtigt.</German>
+            <Italian>% 1, a uomo di %2 anni. La sua famiglia è stata informata.</Italian>
         </Key>
         <Key ID="STR_AUTOPSY_learnmore_text">
             <Original>&lt;br/&gt;&lt;br/&gt;To learn more, you would need to perform this autopsy closer to a medical facility.</Original>
             <English>&lt;br/&gt;&lt;br/&gt;To learn more, you would need to perform this autopsy closer to a medical facility.</English>
             <Russian>&lt;br/&gt;&lt;br/&gt;Чтобы узнать больше, необходимо провести вскрытие вблизи медицинского учреждения.</Russian>
             <German>&lt;br/&gt;&lt;br/&gt;Um mehr über die Ursachen des Todes zu erfahren, musst du die Autopsie näher an einer Medizinischen einrichtung durchführern.</German>
+            <Italian>&lt;br/&gt; &lt;br/&gt; Per saperne di più sulle cause della morte, dovrai eseguire l'autopsia più vicino a una struttura medica.</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_civdeath_noticestyle">
             <Original>Civilian death notification style</Original>
             <English>Civilian death notification style</English>
             <Russian>Уведомления о смерти гражданских</Russian>
-            <German>Art der Zivilien Todesnachrichten</German>
+            <German>Art der Zivilen Todesnachrichten</German>
+            <Italian>Tipo di atto di morte civile</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_civdeath_noticestyle2">
             <Original>Choose where the notification of a civilian death appears.</Original>
             <English>Choose where the notification of a civilian death appears.</English>
             <Russian>Выберите, где будет показываться уведомление о потерях.</Russian>
             <German>Wähle aus, wo die Todesnachrichten angezeigt werden.</German>
+            <Italian>Seleziona dove vengono visualizzati gli avvisi di morte.</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_notice_diary">
             <Original>Diary Record Only</Original>
             <English>Diary Record Only</English>
             <Russian>Только в Брифинге</Russian>
             <German>Nur im Tagebuch</German>
+            <Italian>Solo nel diario</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_notice_chat">
             <Original>Side Chat (lower left)</Original>
             <English>Side Chat (lower left)</English>
             <Russian>В окне чата (внизу слева)</Russian>
-            <German>Seiten Kanal (unten links)</German>
+            <German>Seitenkanal (unten links)</German>
+            <Italian>Canale laterale (in basso a sinistra)</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_notice_hint">
             <Original>Hint (top right)</Original>
             <English>Hint (top right)</English>
             <Russian>В окне подсказок (справа вверху)</Russian>
             <German>Hinweis (oben rechts)</German>
+            <Italian>Nota (in alto a destra)</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_civdeath_marks">
             <Original>Mark civilian deaths on map</Original>
             <English>Mark civilian deaths on map</English>
             <Russian>Отмечать места гибели на карте</Russian>
             <German>Markiere Tote zivilisten auf der Karte.</German>
+            <Italian>Segna i civili morti sulla mappa.</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_civdeath_marks2">
             <Original>If selected, civilian deaths will be marked on the map with a yellow dot.</Original>
             <English>If selected, civilian deaths will be marked on the map with a yellow dot.</English>
             <Russian>Если выбрано, места гибели будут отмечены на карте желтыми точками.</Russian>
             <German>Wenn ausgewählt, werden zivile Todesopfer auf der Karte mittels gelben Punkt makiert.</German>
+            <Italian>Se selezionato, le vittime civili sono contrassegnate sulla mappa con un punto giallo.</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_candoautopsy">
             <Original>Who can perform autopsies?</Original>
             <English>Who can perform autopsies?</English>
             <Russian>Кто может проводить вскрытия?</Russian>
             <German>Wer kann Autopsien durchführen?</German>
+            <Italian>Chi può fare le autopsie?</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_candoautopsy2">
             <Original>Choose which class(es) can perform basic autopsies.</Original>
             <English>Choose which class(es) can perform basic autopsies.</English>
             <Russian>Выберите класс(Ы), которые могут проводить базовые вскрытия.</Russian>
             <German>Wähle aus, welche Klasse(n) Autopsien durchführen können.</German>
+            <Italian>Scegli quale/i classe/si può eseguire le autopsie.</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_anyone">
             <Original>Anyone</Original>
             <English>Anyone</English>
             <Russian>Кто угодно</Russian>
             <German>Jeder</German>
+            <Italian>Tutti</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_medicsdoctors">
             <Original>Medics+Doctors</Original>
             <English>Medics+Doctors</English>
             <Russian>Санитары и Врачи</Russian>
             <German>Sanitäter und Ärzte</German>
+            <Italian>Paramedici e medici</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_doctorsonly">
             <Original>Doctors only</Original>
             <English>Doctors only</English>
             <Russian>Только Врачи</Russian>
             <German>Nur Ärzte</German>
+            <Italian>Solo medici</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_addbodybag">
             <Original>Add bodybag to dead civilian's inventory?</Original>
             <English>Add bodybag to dead civilian's inventory?</English>
             <Russian>Добавлять мешок в инвентарь погибшего?</Russian>
             <German>Toten Zivilisten Leichensack ins Inventar legen?</German>
+            <Italian>Mettere il sacco per i cadaveri di civili morti nell'inventario?</Italian>
         </Key>
         <Key ID="STR_FNINITCBA_addbodybag2">
             <Original>Use in scenarios where bodybags would be otherwise impossible to obtain, e.g. Antistasi.</Original>
             <English>Use in scenarios where bodybags would be otherwise impossible to obtain, e.g. Antistasi.</English>
             <Russian>Используется в сценариях, где невозможно получить иным способом, к примеру Antistasi.</Russian>
             <German>Für Szenarien, wo Leichensäcke unmöglich sind, zu bekommen. z.b. Antistasi.</German>
+            <Italian>Per scenari in cui è impossibile ottenere sacchi per cadaveri. per esempio. Antistasi.</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Autopsy_action">
             <Original>Perform autopsy</Original>
             <English>Perform autopsy</English>
             <Russian>Провести вскрытие</Russian>
             <German>Führe Autopsie durch</German>
+            <Italian>Eseguire un'autopsia</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Autopsy_process">
             <Original>Performing autopsy...</Original>
             <English>Performing autopsy...</English>
             <Russian>Производится вскрытие...</Russian>
             <German>Autopsiere Patienten...</German>
+            <Italian>Pazienti autoptici...</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Bury_action">
             <Original>Bury</Original>
             <English>Bury</English>
             <Russian>Похоронить тело</Russian>
             <German>Beerdige</German>
+            <Italian>Sepoltura</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Bury_process">
             <Original>Burying body...</Original>
             <English>Burying body...</English>
             <Russian>Погребение тела...</Russian>
             <German>Vergrabe Leiche...</German>
+            <Italian>Seppellire cadavere...</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Vandalize_action">
             <Original>Vandalize marker</Original>
             <English>Vandalize marker</English>
             <Russian>Стереть надпись на могиле</Russian>
             <German>Verunstalte grabstein</German>
+            <Italian>Deturpa la lapide</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Vandalize_hint">
             <Original>You scratch out the name on the marker.</Original>
             <English>You scratch out the name on the marker.</English>
             <Russian>Вы стираете надпись на могиле.</Russian>
             <German>Du hast den Namen vom Grabstein gekratzt.</German>
+            <Italian>Hai cancellato il nome dalla lapide.</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Vandalize_process">
             <Original>Vandalizing marker...</Original>
             <English>Vandalizing marker...</English>
             <Russian>Стирание надписи...</Russian>
             <German>Verunstalte Grabstein...</German>
+            <Italian>Deturpa la lapide...</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Vandalized_hint">
             <Original>The marker is already illegible.</Original>
             <English>The marker is already illegible.</English>
             <Russian>Надпись уже нечитаема</Russian>
             <German>Der Grabstein ist bereits unleserlich.</German>
+            <Italian>La lapide è già illeggibile.</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Exhume_action">
             <Original>Exhume</Original>
             <English>Exhume</English>
             <Russian>Провести эксгумацию</Russian>
             <German>Exhumiere</German>
+            <Italian>Riesumare</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Exhume_process">
             <Original>Exhuming body...</Original>
             <English>Exhuming body...</English>
             <Russian>Проводится эксгумация...</Russian>
             <German>Exhumiere Leiche...</German>
+            <Italian>Riesumare il cadavere...</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_Readmarker_action">
             <Original>Read marker</Original>
             <English>Read marker</English>
             <Russian>Прочесть надпись</Russian>
             <German>Grabstein lesen</German>
+            <Italian>Leggi la lapide</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_epitaphy_text">
             <Original>&lt;t align='center'&gt;%1&lt;br/&gt;Born %2  Died %3&lt;/t&gt;</Original>
             <English>&lt;t align='center'&gt;%1&lt;br/&gt;Born %2  Died %3&lt;/t&gt;</English>
             <Russian>&lt;t align='center'&gt;%1&lt;br/&gt;%2 - %3&lt;/t&gt;</Russian>
             <German>&lt;t align='center'&gt;%1&lt;br/&gt;Geboren %2 Gestorben %3&lt;/t&gt;</German>
+            <Italian>&lt;t align = 'center'&gt;%1 &lt;br/&gt; Nato %2 Morto %3 &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_unknown_text">
             <Original>&lt;t align='center'&gt;UNKNOWN&lt;/t&gt;</Original>
             <English>&lt;t align='center'&gt;UNKNOWN&lt;/t&gt;</English>
             <Russian>&lt;t align='center'&gt;НЕИЗВЕСТНЫЙ&lt;/t&gt;</Russian>
             <German>&lt;t align='center'&gt;UNBEKANNT&lt;/t&gt;</German>
+            <Italian>&lt;t align = 'center'&gt; SCONOSCIUTO &lt;/t&gt;</Italian>
         </Key>
         <Key ID="STR_FNINITCLIENT_scratched_hint">
             <Original>Someone has scratched out the name on this grave.</Original>
             <English>Someone has scratched out the name on this grave.</English>
             <Russian>Кто-то стёр имя на этой могиле.</Russian>
             <German>Jemand hat den namen vom Grabstein gekratzt.</German>
+            <Italian>Qualcuno ha graffiato il nome dalla lapide.</Italian>
         </Key>
         <Key ID="STR_FNINITSERVER_COD_UNKNOWN">
             <Original>You are unable to determine a cause of death.</Original>
             <English>You are unable to determine a cause of death.</English>
             <Russian>Вы не cмогли определить причину смерти.</Russian>
             <German>Du konntest die Todesursache nicht feststellen.</German>
+            <Italian>Non sei riuscito a determinare la causa della morte.</Italian>
         </Key>
         <Key ID="STR_FNINITSERVER_COD_BULLET">
             <Original>The patient was killed by gunshot wounds.</Original>
             <English>The patient was killed by gunshot wounds.</English>
             <Russian>Жертва скончалась от огнестрельных ранений.</Russian>
             <German>Der Patient starb an einer Schusswunde.</German>
+            <Italian>Il paziente è morto per una ferita da arma da fuoco.</Italian>
         </Key>
         <Key ID="STR_FNINITSERVER_COD_VEHICLE">
             <Original>The patient was killed by blunt-force trauma, likely due to collision with a vehicle.</Original>
             <English>The patient was killed by blunt-force trauma, likely due to collision with a vehicle.</English>
             <Russian>Жертва получила удар тупым предметом, вероятно, из-за столкновения с транспортным средством.</Russian>
             <German>Der Patient starb an einem Stumpfen-Trauma, wahrscheinlich durch eine fahrzeug kollision verursacht.</German>
+            <Italian>Il paziente è deceduto per il trauma del moncone, probabilmente causato da una collisione con un veicolo.</Italian>
         </Key>
         <Key ID="STR_FNINITSERVER_COD_GRENADE">
             <Original>The patient exhibits shrapnel and fragmentation wounds, consistent with a grenade explosion.</Original>
             <English>The patient exhibits shrapnel and fragmentation wounds, consistent with a grenade explosion.</English>
             <Russian>Обнаруженые осколочные ранения на теле и фрагменты осколков, указывают на взрыв гранаты.</Russian>
             <German>Der Patient zeigt Fragment und Schrapnell wunden, wie Sie durch eine Grante verursacht werden.</German>
+            <Italian>Il paziente mostra piaghe da frammenti e schegge causate da una sovvenzione.</Italian>
         </Key>
         <Key ID="STR_FNINITSERVER_COD_EXPLOSION">
             <Original>The patient exhibits blast and fragmentation wounds, consistent with an explosion.</Original>
             <English>The patient exhibits blast and fragmentation wounds, consistent with an explosion.</English>
             <Russian>На теле обнаружены повреждения и осколочые ранения, характерные для взрыва.</Russian>
             <German>Der Patient weist Explosions- und Splitterwunden auf, die einer Explosion entsprechen.</German>
+            <Italian>Il paziente ha ferite da esplosione e scheggia che corrispondono a un'esplosione.</Italian>
         </Key>
         <Key ID="STR_FNINITSERVER_COD_SHELL">
             <Original>The patient exhibits broken bones and partial amputations, consistent with a massive explosion.</Original>
             <English>The patient exhibits broken bones and partial amputations, consistent with a massive explosion.</English>
             <Russian>Переломы костей и частичные ампутации у пациента, соответствуют массированый взрыв фугасного заряда.</Russian>
             <German>Der Patient weist Knochenbrüche und Teilamputationen auf, was einer massiven Explosion entspricht.</German>
+            <Italian>Il paziente ha ossa rotte e amputazioni parziali, che corrispondono a una massiccia esplosione.</Italian>
         </Key>
         <Key ID="STR_LOCALNOTIFYAUTOPSY_Aut_report">
             <Original>Autopsy Report</Original>
             <English>Autopsy Report</English>
             <Russian>Отчет о вскрытии</Russian>
             <German>Autopsiebericht</German>
+            <Italian>Rapporto dell'autopsia</Italian>
         </Key>
         <Key ID="STR_LOCALNOTIFYAUTOPSY_Approve">
             <Original>Approve</Original>
             <English>Approve</English>
             <Russian>Подпись</Russian>
             <German>Annehmen</German>
+            <Italian>Accettare</Italian>
         </Key>
         <Key ID="STR_LOCALNOTIFYCIVDEATH_Civkilled_hint">
             <Original>&lt;t color='#cc0808' align='center'&gt;%1 has killed a civilian.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, age %3)&lt;/t&gt;&lt;/t&gt;</Original>
             <English>&lt;t color='#cc0808' align='center'&gt;%1 has killed a civilian.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, age %3)&lt;/t&gt;&lt;/t&gt;</English>
             <Russian>&lt;t color='#cc0808' align='center'&gt;%1 убил гражданского.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, возраст %3)&lt;/t&gt;&lt;/t&gt;</Russian>
             <German>Accept&lt;t color='#cc0808' align='center'&gt;%1 hat einen Zivilisten getötet.&lt;br/&gt;&lt;t color='#dddddd'&gt;(%2, Alter %3)&lt;/t&gt;&lt;/t &gt;</German>
+            <Italian>Accetta &lt;t color = '#cc0808' align = 'center'&gt;%1 ha ucciso un civile.&lt;br/&gt; &lt;t color = '#dddddd'&gt; (%2, età %3) &lt;/t&gt; &lt;/ t &gt;</Italian>
         </Key>
         <Key ID="STR_LOCALNOTIFYCIVDEATH_Civkilled_chat">
             <Original>%1 has killed a civilian. (%2, age %3)</Original>
             <English>%1 has killed a civilian. (%2, age %3)</English>
             <Russian>%1 убил гражданского. (%2, возраст %3)</Russian>
             <German>%1 hat einen Zivilisten getötet. (%2, Alter %3)</German>
+            <Italian>%1 ha ucciso un civile. (%2, età %3)</Italian>
         </Key>
         <Key ID="STR_LOCALNOTIFYCIVDEATH_Civkilled_diary">
             <Original>%1 killed %2 (age %3).</Original>
             <English>%1 killed %2 (age %3).</English>
             <Russian>%1 убил %2 (возраст %3)</Russian>
             <German>%1 tötete %2 (Alter %3).</German>
+            <Italian>%1 ucciso%2 (età %3).</Italian>
         </Key>
         <Key ID="STR_LOCALNOTIFYCIVDEATH_diary">
             <Original>Civilian Deaths</Original>
             <English>Civilian Deaths</English>
             <Russian>Потери среди гражданских</Russian>
             <German>Zivile Todesfälle</German>
+            <Italian>Morti civili</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_House">
             <Original>House</Original>
             <English>House</English>
             <Russian>Дом</Russian>
             <German>Haus</German>
+            <Italian>Casa</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_Church">
             <Original>Church</Original>
             <English>Church</English>
             <Russian>Церковь</Russian>
             <German>Kirche</German>
+            <Italian>Chiesa</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_Chapel">
             <Original>Chapel</Original>
             <English>Chapel</English>
             <Russian>Часовня</Russian>
             <German>Kapelle</German>
+            <Italian>Cappella</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_Building">
             <Original>Building</Original>
             <English>Building</English>
             <Russian>Здание</Russian>
             <German>Gebäude</German>
+            <Italian>Costruzione</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_Hospital">
             <Original>Hospital</Original>
             <English>Hospital</English>
             <Russian>Больница</Russian>
             <German>Krankenhaus</German>
+            <Italian>Ospedale</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_Bigtask_Text">
             <Original>Deliver the body of %1 to his nearest relative.</Original>
             <English>Deliver the body of %1 to his nearest relative.</English>
             <Russian>Доставить тело жителя по имени %1 его ближайшим родственникам.</Russian>
             <German>Bringen Sie die Leiche von %1 zu seinem nächsten Verwandten.</German>
+            <Italian>Porta il corpo di %1 al suo parente più stretto.</Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_Bigtask">
             <Original>Deal with Civilian Death.</Original>
             <English>Deal with Civilian Death.</English>
             <Russian>Разобраться с потерей гражданского.</Russian>
             <German>Beschäftige dich mit den Toten Zivilisten.</German>
+            <Italian>Affronta i civili morti.</Italian>
         </Key>
         <Key ID="STR_EXHUMEBODY_Unknown">
             <Original>Unknown</Original>
             <English>Unknown</English>
             <Russian>Неизвестный</Russian>
             <German>Unbekannt</German>
+            <Italian>Sconosciuto</Italian>
         </Key>
         <Key ID="STR_EXHUMEBODY_John">
             <Original>John</Original>
             <English>John</English>
             <Russian>Василий</Russian>
             <German>Max</German>
+            <Italian>Mario </Italian>
         </Key>
         <Key ID="STR_EXHUMEBODY_Doe">
             <Original>Doe</Original>
             <English>Doe</English>
             <Russian>Пупкин</Russian>
             <German>Mustermann</German>
+            <Italian>Rossi </Italian>
         </Key>
         <Key ID="STR_DELIVERBODY_task">
             <Original>Deliver Body</Original>
             <English>Deliver Body</English>
             <Russian>Доставить тело</Russian>
             <German>Leiche abliefern</German>
+            <Italian>Consegna il cadavere</Italian>
         </Key>
         <Key ID="STR_VANDALIZEGRAVE_Conceal_task">
             <Original>Conceal Death</Original>
             <English>Conceal Death</English>
             <Russian>Утаить смерть гражданского.</Russian>
             <German>Den Toten verbergen</German>
+            <Italian>Nascondi i morti</Italian>
         </Key>
     </Package>
 </Project>
